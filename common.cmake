@@ -35,6 +35,7 @@ target_compile_options(
               /wd4100
               /wd4101
               /wd4189
+              /utf-8
               /bigobj
               /diagnostics:caret
               /Zc:__cplusplus
