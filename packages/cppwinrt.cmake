@@ -9,6 +9,12 @@ add_library(
     cppwinrt
     )
 
+cmake_path(
+    SET
+    cppwinrt_SOURCE_DIR
+    "${CMAKE_BINARY_DIR}/_deps/Nuget/Microsoft.Windows.CppWinRT"
+    )
+
 execute_process(
     COMMAND
         cppwinrt -input "${webview2_SOURCE_DIR}/lib/Microsoft.Web.WebView2.Core.winmd" sdk -output
@@ -17,9 +23,3 @@ execute_process(
     )
 
 target_include_directories(cppwinrt INTERFACE "${cppwinrt_SOURCE_DIR}/build/native/include")
-
-cmake_path(
-    SET
-    cppwinrt_SOURCE_DIR
-    "${CMAKE_BINARY_DIR}/_deps/Nuget/Microsoft.Windows.CppWinRT"
-    )
