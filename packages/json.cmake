@@ -25,3 +25,5 @@ target_sources(
            "${json_SOURCE_DIR}/single_include/nlohmann/json.hpp"
            "${json_SOURCE_DIR}/single_include/nlohmann/json_fwd.hpp"
     )
+
+target_compile_definitions(json PUBLIC NLOHMANN_JSON_NAMESPACE_NO_VERSION=1)
