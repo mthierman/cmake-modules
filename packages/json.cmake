@@ -1,20 +1,19 @@
 FetchContent_Declare(
-    json
-    URL "https://github.com/nlohmann/json/releases/download/v3.11.3/include.zip"
-)
+    json URL "https://github.com/nlohmann/json/releases/download/v3.11.3/include.zip"
+    )
 
 FetchContent_MakeAvailable(json)
 
 add_library(
     json
     INTERFACE
-)
+    )
 
 add_library(
     json::json
     ALIAS
     json
-)
+    )
 
 target_sources(
     json
@@ -25,4 +24,4 @@ target_sources(
            FILES
            "${json_SOURCE_DIR}/single_include/nlohmann/json.hpp"
            "${json_SOURCE_DIR}/single_include/nlohmann/json_fwd.hpp"
-)
+    )

@@ -1,18 +1,18 @@
 add_library(
     common_features
     INTERFACE
-)
+    )
 
 target_compile_features(
     common_features
     INTERFACE c_std_17
               cxx_std_23
-)
+    )
 
 add_library(
     common_definitions
     INTERFACE
-)
+    )
 
 target_compile_definitions(
     common_definitions
@@ -20,12 +20,12 @@ target_compile_definitions(
               WIN32_LEAN_AND_MEAN
               NLOHMANN_JSON_NAMESPACE_NO_VERSION=1
               GDIPVER=0x0110
-)
+    )
 
 add_library(
     common_flags
     INTERFACE
-)
+    )
 
 target_compile_options(
     common_flags
@@ -57,7 +57,7 @@ target_compile_options(
               -Wno-extra-semi
               -Wno-microsoft-enum-value
               >
-)
+    )
 
 target_link_options(
     common_flags
@@ -69,12 +69,12 @@ target_link_options(
     $<$<CXX_COMPILER_ID:Clang>:
     -Wl,/entry:mainCRTStartup,/WX
     >
-)
+    )
 
 add_library(
     common_flags_deps
     INTERFACE
-)
+    )
 
 target_compile_options(
     common_flags_deps
@@ -85,28 +85,28 @@ target_compile_options(
               >
               $<$<CXX_COMPILER_ID:Clang>:
               >
-)
+    )
 
 add_library(
     common::features
     ALIAS
     common_features
-)
+    )
 
 add_library(
     common::definitions
     ALIAS
     common_definitions
-)
+    )
 
 add_library(
     common::flags
     ALIAS
     common_flags
-)
+    )
 
 add_library(
     common::flags_deps
     ALIAS
     common_flags_deps
-)
+    )
