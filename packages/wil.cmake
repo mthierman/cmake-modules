@@ -12,7 +12,7 @@ add_library(
 cmake_path(
     SET
     wil_SOURCE_DIR
-    "${CMAKE_BINARY_DIR}/_deps/Nuget/Microsoft.Windows.ImplementationLibrary"
+    "${CMAKE_BINARY_DIR}/_deps/Microsoft.Windows.ImplementationLibrary"
     )
 
 target_include_directories(wil INTERFACE "${wil_SOURCE_DIR}/include")

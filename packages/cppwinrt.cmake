@@ -12,7 +12,7 @@ add_library(
 cmake_path(
     SET
     cppwinrt_SOURCE_DIR
-    "${CMAKE_BINARY_DIR}/_deps/Nuget/Microsoft.Windows.CppWinRT"
+    "${CMAKE_BINARY_DIR}/_deps/Microsoft.Windows.CppWinRT"
     )
 
 execute_process(

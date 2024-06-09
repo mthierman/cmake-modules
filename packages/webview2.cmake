@@ -12,7 +12,7 @@ add_library(
 cmake_path(
     SET
     webview2_SOURCE_DIR
-    "${CMAKE_BINARY_DIR}/_deps/Nuget/Microsoft.Web.WebView2"
+    "${CMAKE_BINARY_DIR}/_deps/Microsoft.Web.WebView2"
     )
 
 # target_sources( webview2 PUBLIC FILE_SET HEADERS BASE_DIRS
