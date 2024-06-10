@@ -1,3 +1,5 @@
+include(FetchContent)
+
 FetchContent_Declare(
     ada URL "https://github.com/ada-url/ada/releases/download/v2.7.8/singleheader.zip"
     )

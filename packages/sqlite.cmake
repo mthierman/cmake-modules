@@ -1,3 +1,5 @@
+include(FetchContent)
+
 FetchContent_Declare(sqlite URL "https://www.sqlite.org/2024/sqlite-amalgamation-3450300.zip")
 
 FetchContent_MakeAvailable(sqlite)
