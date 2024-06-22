@@ -88,6 +88,13 @@ target_compile_options(
     )
 
 add_library(
+    common_libraries
+    INTERFACE
+    )
+
+target_link_libraries(common_libraries INTERFACE RpcRT4.Lib)
+
+add_library(
     common::features
     ALIAS
     common_features
@@ -109,4 +116,10 @@ add_library(
     common::flags_deps
     ALIAS
     common_flags_deps
+    )
+
+add_library(
+    common::libraries
+    ALIAS
+    common_libraries
     )
