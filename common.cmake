@@ -31,7 +31,6 @@ target_compile_options(
     INTERFACE $<$<CXX_COMPILER_ID:MSVC>:
               /W4
               /WX
-              /wd4065
               /wd4100
               /wd4101
               /wd4189
