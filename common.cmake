@@ -91,7 +91,7 @@ add_library(
     INTERFACE
     )
 
-target_link_libraries(common_libraries INTERFACE RpcRT4.Lib)
+target_link_libraries(common_libraries INTERFACE dwmapi.lib RpcRT4.Lib)
 
 add_library(
     common::features
