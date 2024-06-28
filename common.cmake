@@ -10,18 +10,6 @@ target_compile_features(
     )
 
 add_library(
-    common_definitions
-    INTERFACE
-    )
-
-target_compile_definitions(
-    common_definitions
-    INTERFACE NOMINMAX
-              WIN32_LEAN_AND_MEAN
-              GDIPVER=0x0110
-    )
-
-add_library(
     common_flags
     INTERFACE
     )
@@ -87,15 +75,21 @@ target_compile_options(
     )
 
 add_library(
-    common::features
-    ALIAS
-    common_features
+    common_definitions
+    INTERFACE
+    )
+
+target_compile_definitions(
+    common_definitions
+    INTERFACE NOMINMAX
+              WIN32_LEAN_AND_MEAN
+              GDIPVER=0x0110
     )
 
 add_library(
-    common::definitions
+    common::features
     ALIAS
-    common_definitions
+    common_features
     )
 
 add_library(
@@ -108,4 +102,10 @@ add_library(
     common::flags_deps
     ALIAS
     common_flags_deps
+    )
+
+add_library(
+    common::definitions
+    ALIAS
+    common_definitions
     )
