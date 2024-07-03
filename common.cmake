@@ -26,6 +26,7 @@ target_compile_options(
               /bigobj
               /diagnostics:caret
               /Zc:__cplusplus
+              /await:strict
               >
               $<$<CXX_COMPILER_ID:Clang>:
               -Wall
