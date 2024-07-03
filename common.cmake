@@ -44,6 +44,7 @@ target_compile_options(
               -Wno-gnu-zero-variadic-macro-arguments
               -Wno-extra-semi
               -Wno-microsoft-enum-value
+              -Wno-braced-scalar-init
               >
     )
 
