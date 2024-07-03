@@ -4,7 +4,7 @@ add_library(
     )
 
 add_library(
-    wil::wil
+    ms::wil
     ALIAS
     wil
     )

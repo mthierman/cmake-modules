@@ -1,7 +1,7 @@
 include(FetchContent)
 
 FetchContent_Declare(
-    ada URL "https://github.com/ada-url/ada/releases/download/v2.7.8/singleheader.zip"
+    ada URL "https://github.com/ada-url/ada/releases/download/v2.8.0/singleheader.zip"
     )
 
 FetchContent_MakeAvailable(ada)
@@ -9,7 +9,7 @@ FetchContent_MakeAvailable(ada)
 add_library(ada)
 
 add_library(
-    ada::ada
+    ada-url::ada
     ALIAS
     ada
     )

@@ -4,7 +4,7 @@ add_library(
     )
 
 add_library(
-    webview2::webview2
+    ms::webview2
     ALIAS
     webview2
     )

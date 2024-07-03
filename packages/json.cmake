@@ -12,7 +12,7 @@ add_library(
     )
 
 add_library(
-    json::json
+    nlohmann::json
     ALIAS
     json
     )

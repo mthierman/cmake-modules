@@ -4,7 +4,7 @@ add_library(
     )
 
 add_library(
-    cppwinrt::cppwinrt
+    ms::cppwinrt
     ALIAS
     cppwinrt
     )
