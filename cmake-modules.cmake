@@ -1,6 +1,132 @@
 include(FetchContent)
 
 function(
+    install_glow
+    version
+    )
+    FetchContent_Declare(
+        glow URL https://github.com/mthierman/Glow/releases/download/v${version}/Glow.zip
+        )
+
+    FetchContent_MakeAvailable(glow)
+endfunction()
+
+function(install_common)
+    add_library(
+        common_features
+        INTERFACE
+        )
+
+    target_compile_features(
+        common_features
+        INTERFACE c_std_17
+                  cxx_std_23
+        )
+
+    add_library(
+        common_flags
+        INTERFACE
+        )
+
+    target_compile_options(
+        common_flags
+        INTERFACE $<$<CXX_COMPILER_ID:MSVC>:
+                  /W4
+                  /WX
+                  /wd4100
+                  /wd4101
+                  /wd4189
+                  /utf-8
+                  /bigobj
+                  /diagnostics:caret
+                  /Zc:__cplusplus
+                  >
+                  $<$<CXX_COMPILER_ID:Clang>:
+                  -Wall
+                  -Werror
+                  -Wextra
+                  -Wpedantic
+                  -Wno-language-extension-token
+                  -Wno-unused-parameter
+                  -Wno-unused-but-set-variable
+                  -Wno-unused-variable
+                  -Wno-missing-field-initializers
+                  -Wno-nonportable-include-path
+                  -Wno-sign-compare
+                  -Wno-unused-function
+                  -Wno-gnu-zero-variadic-macro-arguments
+                  -Wno-extra-semi
+                  -Wno-microsoft-enum-value
+                  -Wno-braced-scalar-init
+                  >
+        )
+
+    target_link_options(
+        common_flags
+        INTERFACE
+        $<$<CXX_COMPILER_ID:MSVC>:
+        /entry:mainCRTStartup
+        /WX
+        >
+        $<$<CXX_COMPILER_ID:Clang>:
+        -Wl,/entry:mainCRTStartup,/WX
+        >
+        )
+
+    add_library(
+        common_flags_deps
+        INTERFACE
+        )
+
+    target_compile_options(
+        common_flags_deps
+        INTERFACE $<$<CXX_COMPILER_ID:MSVC>:
+                  /bigobj
+                  /diagnostics:caret
+                  /Zc:__cplusplus
+                  >
+                  $<$<CXX_COMPILER_ID:Clang>:
+                  >
+        )
+
+    add_library(
+        common_definitions
+        INTERFACE
+        )
+
+    target_compile_definitions(
+        common_definitions
+        INTERFACE NOMINMAX
+                  WIN32_LEAN_AND_MEAN
+                  GDIPVER=0x0110
+        )
+
+    add_library(
+        common::features
+        ALIAS
+        common_features
+        )
+
+    add_library(
+        common::flags
+        ALIAS
+        common_flags
+        )
+
+    add_library(
+        common::flags_deps
+        ALIAS
+        common_flags_deps
+        )
+
+    add_library(
+        common::definitions
+        ALIAS
+        common_definitions
+        )
+endfunction()
+
+function(
     install_wil
     version
     )
@@ -215,10 +341,54 @@ function(
         )
 endfunction()
 
+function(
+    install_juce
+    branch
+    )
+    FetchContent_Declare(
+        juce
+        GIT_REPOSITORY "https://github.com/juce-framework/JUCE.git"
+        GIT_TAG ${branch}
+        GIT_SHALLOW ON
+        )
+
+    FetchContent_MakeAvailable(juce)
+endfunction()
+
 function(download_vcredist)
     file(
         DOWNLOAD
         "https://aka.ms/vs/17/release/vc_redist.x64.exe"
         "${CMAKE_BINARY_DIR}/vc_redist.x64.exe"
+        )
+endfunction()
+
+function(release_info)
+    cmake_path(
+        SET
+        NOTES_PATH
+        "${PROJECT_BINARY_DIR}/notes"
+        )
+
+    file(
+        MAKE_DIRECTORY
+        ${NOTES_PATH}
+        )
+
+    if(DEFINED
+       PROJECT_VERSION
+        )
+        file(
+            WRITE
+            "${NOTES_PATH}/version"
+            "v${PROJECT_VERSION}"
+            )
+    endif()
+
+    execute_process(COMMAND git rev-parse --short HEAD OUTPUT_FILE "${NOTES_PATH}/short_hash")
+
+    execute_process(
+        COMMAND git --no-pager log -5 --oneline --no-decorate
+        OUTPUT_FILE "${NOTES_PATH}/release_notes"
         )
 endfunction()
