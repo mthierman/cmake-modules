@@ -1,14 +1,77 @@
 function(
+    install_wil
+    version
+    )
+    execute_process(
+        COMMAND
+            nuget install Microsoft.Windows.ImplementationLibrary -OutputDirectory
+            "${CMAKE_BINARY_DIR}/_deps" -Version ${version} -ExcludeVersion
+        )
+
+    add_library(
+        wil
+        INTERFACE
+        )
+
+    add_library(
+        ms::wil
+        ALIAS
+        wil
+        )
+
+    cmake_path(
+        SET
+        wil_SOURCE_DIR
+        "${CMAKE_BINARY_DIR}/_deps/Microsoft.Windows.ImplementationLibrary"
+        )
+
+    target_include_directories(wil INTERFACE "${wil_SOURCE_DIR}/include")
+endfunction()
+
+function(
+    install_cppwinrt
+    version
+    )
+    execute_process(
+        COMMAND
+            nuget install Microsoft.Windows.CppWinRT -OutputDirectory "${CMAKE_BINARY_DIR}/_deps"
+            -Version ${version} -ExcludeVersion
+        )
+
+    add_library(
+        cppwinrt
+        INTERFACE
+        )
+
+    add_library(
+        ms::cppwinrt
+        ALIAS
+        cppwinrt
+        )
+
+    cmake_path(
+        SET
+        cppwinrt_SOURCE_DIR
+        "${CMAKE_BINARY_DIR}/_deps/Microsoft.Windows.CppWinRT"
+        )
+
+    execute_process(
+        COMMAND cppwinrt -input sdk -output "${cppwinrt_SOURCE_DIR}/build/native/include"
+        WORKING_DIRECTORY "${cppwinrt_SOURCE_DIR}/bin"
+        )
+
+    target_include_directories(cppwinrt INTERFACE "${cppwinrt_SOURCE_DIR}/build/native/include")
+
+endfunction()
+
+function(
     install_webview2
     version
     )
-    message(STATUS ${version})
-
     execute_process(
         COMMAND
             nuget install Microsoft.Web.WebView2 -OutputDirectory "${CMAKE_BINARY_DIR}/_deps"
             -Version ${version} -ExcludeVersion
-        WORKING_DIRECTORY "${PROJECT_SOURCE_DIR}"
         )
 
     add_library(
