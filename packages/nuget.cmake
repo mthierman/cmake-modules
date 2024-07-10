@@ -19,13 +19,9 @@ function(
         wil
         )
 
-    cmake_path(
-        SET
-        wil_SOURCE_DIR
-        "${CMAKE_BINARY_DIR}/_deps/Microsoft.Windows.ImplementationLibrary"
+    target_include_directories(
+        wil INTERFACE "${CMAKE_BINARY_DIR}/_deps/Microsoft.Windows.ImplementationLibrary/include"
         )
-
-    target_include_directories(wil INTERFACE "${wil_SOURCE_DIR}/include")
 endfunction()
 
 function(
@@ -49,19 +45,17 @@ function(
         cppwinrt
         )
 
-    cmake_path(
-        SET
-        cppwinrt_SOURCE_DIR
-        "${CMAKE_BINARY_DIR}/_deps/Microsoft.Windows.CppWinRT"
-        )
-
     execute_process(
-        COMMAND cppwinrt -input sdk -output "${cppwinrt_SOURCE_DIR}/build/native/include"
-        WORKING_DIRECTORY "${cppwinrt_SOURCE_DIR}/bin"
+        COMMAND
+            cppwinrt -input sdk -output
+            "${CMAKE_BINARY_DIR}/_deps/Microsoft.Windows.CppWinRT/build/native/include"
+        WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/_deps/Microsoft.Windows.CppWinRT/bin"
         )
 
-    target_include_directories(cppwinrt INTERFACE "${cppwinrt_SOURCE_DIR}/build/native/include")
-
+    target_include_directories(
+        cppwinrt
+        INTERFACE "${CMAKE_BINARY_DIR}/_deps/Microsoft.Windows.CppWinRT/build/native/include"
+        )
 endfunction()
 
 function(
@@ -85,23 +79,27 @@ function(
         webview2
         )
 
-    cmake_path(
-        SET
-        webview2_SOURCE_DIR
-        "${CMAKE_BINARY_DIR}/_deps/Microsoft.Web.WebView2"
-        )
-
     target_include_directories(
         webview2
-        INTERFACE "${webview2_SOURCE_DIR}/build/native/include"
-                  "${webview2_SOURCE_DIR}/build/native/include-winrt"
+        INTERFACE "${CMAKE_BINARY_DIR}/_deps/Microsoft.Web.WebView2/build/native/include"
+                  "${CMAKE_BINARY_DIR}/_deps/Microsoft.Web.WebView2/build/native/include-winrt"
         )
 
     target_link_directories(
         webview2
         INTERFACE
-        "${webview2_SOURCE_DIR}/build/native/x64"
+        "${CMAKE_BINARY_DIR}/_deps/Microsoft.Web.WebView2/build/native/x64"
         )
 
     target_link_libraries(webview2 INTERFACE WebView2LoaderStatic.lib)
+endfunction()
+
+function(generate_cppwinrt)
+    execute_process(
+        COMMAND
+            cppwinrt -input
+            "${CMAKE_BINARY_DIR}/_deps/Microsoft.Web.WebView2/lib/Microsoft.Web.WebView2.Core.winmd"
+            sdk -output "${CMAKE_BINARY_DIR}/_deps/Microsoft.Windows.CppWinRT/build/native/include"
+        WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/_deps/Microsoft.Windows.CppWinRT/bin"
+        )
 endfunction()
