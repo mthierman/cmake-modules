@@ -130,11 +130,16 @@ function(
     install_wil
     version
     )
-    execute_process(
-        COMMAND
-            nuget install Microsoft.Windows.ImplementationLibrary -OutputDirectory
-            "${CMAKE_BINARY_DIR}/_deps" -Version ${version} -ExcludeVersion
+    if(NOT
+       EXISTS
+       "${CMAKE_BINARY_DIR}/_deps/Microsoft.Windows.ImplementationLibrary"
         )
+        execute_process(
+            COMMAND
+                nuget install Microsoft.Windows.ImplementationLibrary -OutputDirectory
+                "${CMAKE_BINARY_DIR}/_deps" -Version ${version} -ExcludeVersion
+            )
+    endif()
 
     add_library(
         wil
@@ -156,11 +161,16 @@ function(
     install_cppwinrt
     version
     )
-    execute_process(
-        COMMAND
-            nuget install Microsoft.Windows.CppWinRT -OutputDirectory "${CMAKE_BINARY_DIR}/_deps"
-            -Version ${version} -ExcludeVersion
+    if(NOT
+       EXISTS
+       "${CMAKE_BINARY_DIR}/_deps/Microsoft.Windows.CppWinRT"
         )
+        execute_process(
+            COMMAND
+                nuget install Microsoft.Windows.CppWinRT -OutputDirectory
+                "${CMAKE_BINARY_DIR}/_deps" -Version ${version} -ExcludeVersion
+            )
+    endif()
 
     add_library(
         cppwinrt
@@ -190,11 +200,16 @@ function(
     install_webview2
     version
     )
-    execute_process(
-        COMMAND
-            nuget install Microsoft.Web.WebView2 -OutputDirectory "${CMAKE_BINARY_DIR}/_deps"
-            -Version ${version} -ExcludeVersion
+    if(NOT
+       EXISTS
+       "${CMAKE_BINARY_DIR}/_deps/Microsoft.Web.WebView2"
         )
+        execute_process(
+            COMMAND
+                nuget install Microsoft.Web.WebView2 -OutputDirectory "${CMAKE_BINARY_DIR}/_deps"
+                -Version ${version} -ExcludeVersion
+            )
+    endif()
 
     add_library(
         webview2
@@ -223,13 +238,20 @@ function(
 endfunction()
 
 function(generate_cppwinrt)
-    execute_process(
-        COMMAND
-            cppwinrt -input
-            "${CMAKE_BINARY_DIR}/_deps/Microsoft.Web.WebView2/lib/Microsoft.Web.WebView2.Core.winmd"
-            sdk -output "${CMAKE_BINARY_DIR}/_deps/Microsoft.Windows.CppWinRT/build/native/include"
-        WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/_deps/Microsoft.Windows.CppWinRT/bin"
+    if(EXISTS
+       "${CMAKE_BINARY_DIR}/_deps/Microsoft.Windows.CppWinRT"
+       AND EXISTS
+           "${CMAKE_BINARY_DIR}/_deps/Microsoft.Web.WebView2"
         )
+        execute_process(
+            COMMAND
+                cppwinrt -input
+                "${CMAKE_BINARY_DIR}/_deps/Microsoft.Web.WebView2/lib/Microsoft.Web.WebView2.Core.winmd"
+                sdk -output
+                "${CMAKE_BINARY_DIR}/_deps/Microsoft.Windows.CppWinRT/build/native/include"
+            WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/_deps/Microsoft.Windows.CppWinRT/bin"
+            )
+    endif()
 endfunction()
 
 function(
