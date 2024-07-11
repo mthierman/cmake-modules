@@ -312,16 +312,18 @@ function(
         json
         )
 
-    target_sources(
-        json
-        PUBLIC FILE_SET
-               HEADERS
-               BASE_DIRS
-               "${json_SOURCE_DIR}/single_include/nlohmann"
-               FILES
-               "${json_SOURCE_DIR}/single_include/nlohmann/json.hpp"
-               "${json_SOURCE_DIR}/single_include/nlohmann/json_fwd.hpp"
-        )
+    # target_sources(
+    #     json
+    #     PUBLIC FILE_SET
+    #            HEADERS
+    #            BASE_DIRS
+    #            "${json_SOURCE_DIR}/single_include"
+    #            FILES
+    #            "${json_SOURCE_DIR}/single_include/nlohmann/json.hpp"
+    #            "${json_SOURCE_DIR}/single_include/nlohmann/json_fwd.hpp"
+    #     )
+
+    target_include_directories(json INTERFACE "${json_SOURCE_DIR}/single_include")
 
     target_compile_definitions(json INTERFACE NLOHMANN_JSON_NAMESPACE_NO_VERSION=1)
 endfunction()
