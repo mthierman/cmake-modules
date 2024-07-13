@@ -279,8 +279,6 @@ function(
                HEADERS
                BASE_DIRS
                "${ada_SOURCE_DIR}"
-               FILES
-               "${ada_SOURCE_DIR}/ada.h"
         )
 
     target_link_libraries(
@@ -312,18 +310,13 @@ function(
         json
         )
 
-    # target_sources(
-    #     json
-    #     PUBLIC FILE_SET
-    #            HEADERS
-    #            BASE_DIRS
-    #            "${json_SOURCE_DIR}/single_include"
-    #            FILES
-    #            "${json_SOURCE_DIR}/single_include/nlohmann/json.hpp"
-    #            "${json_SOURCE_DIR}/single_include/nlohmann/json_fwd.hpp"
-    #     )
-
-    target_include_directories(json INTERFACE "${json_SOURCE_DIR}/single_include")
+    target_sources(
+        json
+        PUBLIC FILE_SET
+               HEADERS
+               BASE_DIRS
+               "${json_SOURCE_DIR}/single_include"
+        )
 
     target_compile_definitions(json INTERFACE NLOHMANN_JSON_NAMESPACE_NO_VERSION=1)
 endfunction()
@@ -353,8 +346,6 @@ function(
                HEADERS
                BASE_DIRS
                "${sqlite_SOURCE_DIR}"
-               FILES
-               "${sqlite_SOURCE_DIR}/sqlite3.h"
         )
 
     target_link_libraries(
@@ -377,6 +368,20 @@ function(
         )
 
     FetchContent_MakeAvailable(juce)
+endfunction()
+
+function(
+    install_choc
+    branch
+    )
+    FetchContent_Declare(
+        choc
+        GIT_REPOSITORY "https://github.com/Tracktion/choc.git"
+        GIT_TAG ${branch}
+        GIT_SHALLOW ON
+        )
+
+    FetchContent_MakeAvailable(choc)
 endfunction()
 
 function(download_vcredist)
