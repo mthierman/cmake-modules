@@ -382,6 +382,25 @@ function(
         )
 
     FetchContent_MakeAvailable(choc)
+
+    add_library(
+        choc
+        INTERFACE
+        )
+
+    add_library(
+        tracktion::choc
+        ALIAS
+        choc
+        )
+
+    target_sources(
+        choc
+        PUBLIC FILE_SET
+               HEADERS
+               BASE_DIRS
+               "${choc_SOURCE_DIR}"
+        )
 endfunction()
 
 function(download_vcredist)
