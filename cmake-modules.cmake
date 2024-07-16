@@ -147,7 +147,7 @@ function(
         )
 
     add_library(
-        ms::wil
+        microsoft::wil
         ALIAS
         wil
         )
@@ -178,7 +178,7 @@ function(
         )
 
     add_library(
-        ms::cppwinrt
+        microsoft::cppwinrt
         ALIAS
         cppwinrt
         )
@@ -217,7 +217,7 @@ function(
         )
 
     add_library(
-        ms::webview2
+        microsoft::webview2
         ALIAS
         webview2
         )
