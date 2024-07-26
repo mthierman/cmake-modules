@@ -1,6 +1,22 @@
 include(FetchContent)
 
 function(
+    fetch
+    name
+    url
+    branch
+    )
+    FetchContent_Declare(
+        ${name}
+        GIT_REPOSITORY ${url}
+        GIT_TAG ${branch}
+        GIT_SHALLOW ON
+        )
+
+    FetchContent_MakeAvailable(${name})
+endfunction()
+
+function(
     install_glow
     version
     )
@@ -368,6 +384,34 @@ function(
         )
 
     FetchContent_MakeAvailable(juce)
+endfunction()
+
+function(
+    install_clap
+    branch
+    )
+    FetchContent_Declare(
+        clap
+        GIT_REPOSITORY "https://github.com/free-audio/clap.git"
+        GIT_TAG ${branch}
+        GIT_SHALLOW ON
+        )
+
+    FetchContent_MakeAvailable(clap)
+endfunction()
+
+function(
+    install_clap_helpers
+    branch
+    )
+    FetchContent_Declare(
+        clap-helpers
+        GIT_REPOSITORY "https://github.com/free-audio/clap-helpers.git"
+        GIT_TAG ${branch}
+        GIT_SHALLOW ON
+        )
+
+    FetchContent_MakeAvailable(clap-helpers)
 endfunction()
 
 function(
