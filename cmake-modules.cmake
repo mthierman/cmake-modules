@@ -250,14 +250,14 @@ function(fetch_webview2)
 
     target_link_libraries(webview2 INTERFACE WebView2LoaderStatic.lib)
 
-    if(${CPPWINRT})
-        execute_process(
-            COMMAND
-                cppwinrt -input "${webview2_SOURCE_DIR}/lib/Microsoft.Web.WebView2.Core.winmd" sdk
-                -output "${cppwinrt_SOURCE_DIR}/build/native/include"
-            WORKING_DIRECTORY "${cppwinrt_SOURCE_DIR}/bin"
-            )
-    endif()
+    # if(${CPPWINRT})
+    #     execute_process(
+    #         COMMAND
+    #             cppwinrt -input "${webview2_SOURCE_DIR}/lib/Microsoft.Web.WebView2.Core.winmd" sdk
+    #             -output "${cppwinrt_SOURCE_DIR}/build/native/include"
+    #         WORKING_DIRECTORY "${cppwinrt_SOURCE_DIR}/bin"
+    #         )
+    # endif()
 endfunction()
 
 function(fetch_ada)
