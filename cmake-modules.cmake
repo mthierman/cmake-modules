@@ -208,7 +208,7 @@ function(fetch_cppwinrt)
     target_include_directories(cppwinrt INTERFACE "${cppwinrt_SOURCE_DIR}/build/native/include")
 endfunction()
 
-function(install_webview2)
+function(fetch_webview2)
     set(args VERSION)
     cmake_parse_arguments(
         FETCH
@@ -237,14 +237,14 @@ function(install_webview2)
 
     target_include_directories(
         webview2
-        INTERFACE "${CMAKE_BINARY_DIR}/_deps/Microsoft.Web.WebView2/build/native/include"
-                  "${CMAKE_BINARY_DIR}/_deps/Microsoft.Web.WebView2/build/native/include-winrt"
+        INTERFACE "${webview2_SOURCE_DIR}/build/native/include"
+                  "${webview2_SOURCE_DIR}/build/native/include-winrt"
         )
 
     target_link_directories(
         webview2
         INTERFACE
-        "${CMAKE_BINARY_DIR}/_deps/Microsoft.Web.WebView2/build/native/x64"
+        "${webview2_SOURCE_DIR}/build/native/x64"
         )
 
     target_link_libraries(webview2 INTERFACE WebView2LoaderStatic.lib)
