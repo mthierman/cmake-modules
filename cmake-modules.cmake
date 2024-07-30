@@ -209,10 +209,11 @@ function(fetch_cppwinrt)
 endfunction()
 
 function(fetch_webview2)
+    set(options CPPWINRT)
     set(args VERSION)
     cmake_parse_arguments(
         FETCH
-        ""
+        "${options}"
         "${args}"
         ""
         ${ARGN}
@@ -248,31 +249,29 @@ function(fetch_webview2)
         )
 
     target_link_libraries(webview2 INTERFACE WebView2LoaderStatic.lib)
-endfunction()
 
-function(generate_cppwinrt)
-    if(EXISTS
-       "${CMAKE_BINARY_DIR}/_deps/Microsoft.Windows.CppWinRT"
-       AND EXISTS
-           "${CMAKE_BINARY_DIR}/_deps/Microsoft.Web.WebView2"
-        )
+    if(${CPPWINRT})
         execute_process(
             COMMAND
-                cppwinrt -input
-                "${CMAKE_BINARY_DIR}/_deps/Microsoft.Web.WebView2/lib/Microsoft.Web.WebView2.Core.winmd"
-                sdk -output
-                "${CMAKE_BINARY_DIR}/_deps/Microsoft.Windows.CppWinRT/build/native/include"
-            WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/_deps/Microsoft.Windows.CppWinRT/bin"
+                cppwinrt -input "${webview2_SOURCE_DIR}/lib/Microsoft.Web.WebView2.Core.winmd" sdk
+                -output "${cppwinrt_SOURCE_DIR}/build/native/include"
+            WORKING_DIRECTORY "${cppwinrt_SOURCE_DIR}/bin"
             )
     endif()
 endfunction()
 
-function(
-    install_ada
-    version
-    )
+function(fetch_ada)
+    set(args VERSION)
+    cmake_parse_arguments(
+        FETCH
+        ""
+        "${args}"
+        ""
+        ${ARGN}
+        )
+
     FetchContent_Declare(
-        ada URL "https://github.com/ada-url/ada/releases/download/v${version}/singleheader.zip"
+        ada URL "https://github.com/ada-url/ada/releases/download/v${FETCH_VERSION}/singleheader.zip"
         )
 
     FetchContent_MakeAvailable(ada)
