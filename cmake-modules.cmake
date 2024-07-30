@@ -169,12 +169,10 @@ function(fetch_wil)
         wil
         )
 
-    target_include_directories(
-        wil INTERFACE "${CMAKE_BINARY_DIR}/_deps/Microsoft.Windows.ImplementationLibrary/include"
-        )
+    target_include_directories(wil INTERFACE "${wil_SOURCE_DIR}/include")
 endfunction()
 
-function(install_cppwinrt)
+function(fetch_cppwinrt)
     set(args VERSION)
     cmake_parse_arguments(
         FETCH
@@ -203,32 +201,28 @@ function(install_cppwinrt)
         )
 
     execute_process(
-        COMMAND
-            cppwinrt -input sdk -output
-            "${CMAKE_BINARY_DIR}/_deps/Microsoft.Windows.CppWinRT/build/native/include"
-        WORKING_DIRECTORY "${CMAKE_BINARY_DIR}/_deps/Microsoft.Windows.CppWinRT/bin"
+        COMMAND cppwinrt -input sdk -output "${cppwinrt_SOURCE_DIR}/build/native/include"
+        WORKING_DIRECTORY "${cppwinrt_SOURCE_DIR}/bin"
         )
 
-    target_include_directories(
-        cppwinrt
-        INTERFACE "${CMAKE_BINARY_DIR}/_deps/Microsoft.Windows.CppWinRT/build/native/include"
-        )
+    target_include_directories(cppwinrt INTERFACE "${cppwinrt_SOURCE_DIR}/build/native/include")
 endfunction()
 
-function(
-    install_webview2
-    version
-    )
-    if(NOT
-       EXISTS
-       "${CMAKE_BINARY_DIR}/_deps/Microsoft.Web.WebView2"
+function(install_webview2)
+    set(args VERSION)
+    cmake_parse_arguments(
+        FETCH
+        ""
+        "${args}"
+        ""
+        ${ARGN}
         )
-        execute_process(
-            COMMAND
-                nuget install Microsoft.Web.WebView2 -OutputDirectory "${CMAKE_BINARY_DIR}/_deps"
-                -Version ${version} -ExcludeVersion
-            )
-    endif()
+
+    FetchContent_Declare(
+        webview2 URL "https://www.nuget.org/api/v2/package/Microsoft.Web.WebView2/${FETCH_VERSION}"
+        )
+
+    FetchContent_MakeAvailable(webview2)
 
     add_library(
         webview2
