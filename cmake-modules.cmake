@@ -271,7 +271,8 @@ function(fetch_ada)
         )
 
     FetchContent_Declare(
-        ada URL "https://github.com/ada-url/ada/releases/download/v${FETCH_VERSION}/singleheader.zip"
+        ada
+        URL "https://github.com/ada-url/ada/releases/download/v${FETCH_VERSION}/singleheader.zip"
         )
 
     FetchContent_MakeAvailable(ada)
@@ -301,12 +302,18 @@ function(fetch_ada)
         )
 endfunction()
 
-function(
-    install_json
-    version
-    )
+function(fetch_json)
+    set(args VERSION)
+    cmake_parse_arguments(
+        FETCH
+        ""
+        "${args}"
+        ""
+        ${ARGN}
+        )
+
     FetchContent_Declare(
-        json URL "https://github.com/nlohmann/json/releases/download/v${version}/include.zip"
+        json URL "https://github.com/nlohmann/json/releases/download/v${FETCH_VERSION}/include.zip"
         )
 
     FetchContent_MakeAvailable(json)
@@ -333,12 +340,18 @@ function(
     target_compile_definitions(json INTERFACE NLOHMANN_JSON_NAMESPACE_NO_VERSION=1)
 endfunction()
 
-function(
-    install_sqlite
-    version
-    )
+function(fetch_sqlite)
+    set(args VERSION)
+    cmake_parse_arguments(
+        FETCH
+        ""
+        "${args}"
+        ""
+        ${ARGN}
+        )
+
     FetchContent_Declare(
-        sqlite URL "https://www.sqlite.org/2024/sqlite-amalgamation-${version}.zip"
+        sqlite URL "https://www.sqlite.org/2024/sqlite-amalgamation-${FETCH_VERSION}.zip"
         )
 
     FetchContent_MakeAvailable(sqlite)
@@ -368,57 +381,23 @@ function(
         )
 endfunction()
 
-function(
-    install_juce
-    branch
-    )
-    FetchContent_Declare(
-        juce
-        GIT_REPOSITORY "https://github.com/juce-framework/JUCE.git"
-        GIT_TAG ${branch}
-        GIT_SHALLOW ON
+function(fetch_choc)
+    set(args VERSION)
+    cmake_parse_arguments(
+        FETCH
+        ""
+        "${args}"
+        ""
+        ${ARGN}
         )
 
-    FetchContent_MakeAvailable(juce)
-endfunction()
-
-function(
-    install_clap
-    branch
-    )
-    FetchContent_Declare(
-        clap
-        GIT_REPOSITORY "https://github.com/free-audio/clap.git"
-        GIT_TAG ${branch}
-        GIT_SHALLOW ON
-        )
-
-    FetchContent_MakeAvailable(clap)
-endfunction()
-
-function(
-    install_clap_helpers
-    branch
-    )
-    FetchContent_Declare(
-        clap-helpers
-        GIT_REPOSITORY "https://github.com/free-audio/clap-helpers.git"
-        GIT_TAG ${branch}
-        GIT_SHALLOW ON
-        )
-
-    FetchContent_MakeAvailable(clap-helpers)
-endfunction()
-
-function(
-    install_choc
-    branch
-    )
     FetchContent_Declare(
         choc
         GIT_REPOSITORY "https://github.com/Tracktion/choc.git"
-        GIT_TAG ${branch}
+        GIT_TAG ${FETCH_VERSION}
         GIT_SHALLOW ON
+        SOURCE_SUBDIR
+        "NULL"
         )
 
     FetchContent_MakeAvailable(choc)
@@ -443,7 +422,7 @@ function(
         )
 endfunction()
 
-function(download_vcredist)
+function(fetch_vcredist)
     file(
         DOWNLOAD
         "https://aka.ms/vs/17/release/vc_redist.x64.exe"
