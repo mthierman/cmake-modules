@@ -3,12 +3,12 @@ include(FetchContent)
 function(
     fetch_git
     name
-    url
+    repo
     branch
     )
     FetchContent_Declare(
         ${name}
-        GIT_REPOSITORY ${url}
+        GIT_REPOSITORY "https://github.com/${repo}.git"
         GIT_TAG ${branch}
         GIT_SHALLOW ON
         )
@@ -20,25 +20,13 @@ function(
     fetch_url
     name
     url
-    branch
     )
     FetchContent_Declare(${name} URL ${url})
 
     FetchContent_MakeAvailable(${name})
 endfunction()
 
-function(
-    install_glow
-    version
-    )
-    FetchContent_Declare(
-        glow URL https://github.com/mthierman/Glow/releases/download/v${version}/Glow.zip
-        )
-
-    FetchContent_MakeAvailable(glow)
-endfunction()
-
-function(install_common)
+function(fetch_common)
     add_library(
         common_features
         INTERFACE
@@ -153,20 +141,22 @@ function(install_common)
         )
 endfunction()
 
-function(
-    install_wil
-    version
-    )
-    if(NOT
-       EXISTS
-       "${CMAKE_BINARY_DIR}/_deps/Microsoft.Windows.ImplementationLibrary"
+function(fetch_wil)
+    set(args VERSION)
+    cmake_parse_arguments(
+        FETCH
+        ""
+        "${args}"
+        ""
+        ${ARGN}
         )
-        execute_process(
-            COMMAND
-                nuget install Microsoft.Windows.ImplementationLibrary -OutputDirectory
-                "${CMAKE_BINARY_DIR}/_deps" -Version ${version} -ExcludeVersion
-            )
-    endif()
+
+    FetchContent_Declare(
+        wil
+        URL "https://www.nuget.org/api/v2/package/Microsoft.Windows.ImplementationLibrary/${FETCH_VERSION}"
+        )
+
+    FetchContent_MakeAvailable(wil)
 
     add_library(
         wil
@@ -184,20 +174,22 @@ function(
         )
 endfunction()
 
-function(
-    install_cppwinrt
-    version
-    )
-    if(NOT
-       EXISTS
-       "${CMAKE_BINARY_DIR}/_deps/Microsoft.Windows.CppWinRT"
+function(install_cppwinrt)
+    set(args VERSION)
+    cmake_parse_arguments(
+        FETCH
+        ""
+        "${args}"
+        ""
+        ${ARGN}
         )
-        execute_process(
-            COMMAND
-                nuget install Microsoft.Windows.CppWinRT -OutputDirectory
-                "${CMAKE_BINARY_DIR}/_deps" -Version ${version} -ExcludeVersion
-            )
-    endif()
+
+    FetchContent_Declare(
+        cppwinrt
+        URL "https://www.nuget.org/api/v2/package/Microsoft.Windows.CppWinRT/${FETCH_VERSION}"
+        )
+
+    FetchContent_MakeAvailable(cppwinrt)
 
     add_library(
         cppwinrt
