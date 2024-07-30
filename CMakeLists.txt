@@ -1,3 +1,7 @@
+cmake_minimum_required(VERSION 3.30)
+
+project(CMakeModules VERSION 0.0.0)
+
 include(fetch/fetch.cmake)
 include(fetch/fetch_ada.cmake)
 include(fetch/fetch_choc.cmake)
