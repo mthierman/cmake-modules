@@ -170,7 +170,7 @@ function(fetch_wil)
     FetchContent_Declare(
         wil
         URL "https://www.nuget.org/api/v2/package/Microsoft.Windows.ImplementationLibrary/${FETCH_VERSION}"
-        DOWNLOAD_NO_PROGRESS
+        DOWNLOAD_NO_PROGRESS TRUE
         )
 
     FetchContent_MakeAvailable(wil)
@@ -202,7 +202,7 @@ function(fetch_cppwinrt)
     FetchContent_Declare(
         cppwinrt
         URL "https://www.nuget.org/api/v2/package/Microsoft.Windows.CppWinRT/${FETCH_VERSION}"
-        DOWNLOAD_NO_PROGRESS
+        DOWNLOAD_NO_PROGRESS TRUE
         )
 
     FetchContent_MakeAvailable(cppwinrt)
@@ -238,7 +238,7 @@ function(fetch_webview2)
 
     FetchContent_Declare(
         webview2 URL "https://www.nuget.org/api/v2/package/Microsoft.Web.WebView2/${FETCH_VERSION}"
-        DOWNLOAD_NO_PROGRESS
+        DOWNLOAD_NO_PROGRESS TRUE
         )
 
     FetchContent_MakeAvailable(webview2)
@@ -293,7 +293,7 @@ function(fetch_ada)
     FetchContent_Declare(
         ada
         URL "https://github.com/ada-url/ada/releases/download/v${FETCH_VERSION}/singleheader.zip"
-        DOWNLOAD_NO_PROGRESS
+        DOWNLOAD_NO_PROGRESS TRUE
         )
 
     FetchContent_MakeAvailable(ada)
@@ -335,7 +335,7 @@ function(fetch_json)
 
     FetchContent_Declare(
         json URL "https://github.com/nlohmann/json/releases/download/v${FETCH_VERSION}/include.zip"
-        DOWNLOAD_NO_PROGRESS
+        DOWNLOAD_NO_PROGRESS TRUE
         )
 
     FetchContent_MakeAvailable(json)
@@ -374,7 +374,7 @@ function(fetch_sqlite)
 
     FetchContent_Declare(
         sqlite URL "https://www.sqlite.org/2024/sqlite-amalgamation-${FETCH_VERSION}.zip"
-        DOWNLOAD_NO_PROGRESS
+        DOWNLOAD_NO_PROGRESS TRUE
         )
 
     FetchContent_MakeAvailable(sqlite)
