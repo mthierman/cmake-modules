@@ -657,7 +657,7 @@ function(fetch_hand)
 
     FetchContent_Declare(
         hand
-        GIT_REPOSITORY "https://github.com/mthierman/hand.git"
+        GIT_REPOSITORY "https://github.com/mthierman/Hand.git"
         GIT_TAG ${FETCH_VERSION}
         GIT_SHALLOW ON
         )
