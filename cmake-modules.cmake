@@ -153,18 +153,18 @@ function(fetch_common)
         )
 
     add_library(
-        common_link_options_dll
+        common_link_options_lib
         INTERFACE
         )
 
     add_library(
-        common::link_options_dll
+        common::link_options_lib
         ALIAS
-        common_link_options_dll
+        common_link_options_lib
         )
 
     target_link_options(
-        common_link_options_dll
+        common_link_options_lib
         INTERFACE
         $<$<CXX_COMPILER_FRONTEND_VARIANT:MSVC>:
         /WX
