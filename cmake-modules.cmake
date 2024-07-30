@@ -521,6 +521,28 @@ function(fetch_glow)
     FetchContent_MakeAvailable(glow)
 endfunction()
 
+function(fetch_juce)
+    set(args VERSION)
+    cmake_parse_arguments(
+        FETCH
+        ""
+        "${args}"
+        ""
+        ${ARGN}
+        )
+
+    FetchContent_Declare(
+        juce
+        GIT_REPOSITORY "https://github.com/juce-framework/JUCE.git"
+        GIT_TAG ${FETCH_VERSION}
+        GIT_SHALLOW ON
+        SOURCE_SUBDIR
+        "NULL"
+        )
+
+    FetchContent_MakeAvailable(juce)
+endfunction()
+
 function(fetch_clap)
     set(args VERSION)
     cmake_parse_arguments(
@@ -601,4 +623,26 @@ function(fetch_clap_helpers)
                   BASE_DIRS
                   "${clap-helpers_SOURCE_DIR}/include"
         )
+endfunction()
+
+function(fetch_clap_wrapper)
+    set(args VERSION)
+    cmake_parse_arguments(
+        FETCH
+        ""
+        "${args}"
+        ""
+        ${ARGN}
+        )
+
+    FetchContent_Declare(
+        clap-wrapper
+        GIT_REPOSITORY "https://github.com/free-audio/clap-wrapper.git"
+        GIT_TAG ${FETCH_VERSION}
+        GIT_SHALLOW ON
+        SOURCE_SUBDIR
+        "NULL"
+        )
+
+    FetchContent_MakeAvailable(clap-wrapper)
 endfunction()
