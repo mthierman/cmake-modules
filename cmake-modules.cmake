@@ -37,7 +37,7 @@ function(fetch_url)
         ${ARGN}
         )
 
-    FetchContent_Declare(${FETCH_NAME} URL ${FETCH_URL})
+    FetchContent_Declare(${FETCH_NAME} URL ${FETCH_URL} DOWNLOAD_NO_PROGRESS TRUE)
 
     FetchContent_MakeAvailable(${FETCH_NAME})
 endfunction()
