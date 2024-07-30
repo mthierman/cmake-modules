@@ -16,7 +16,7 @@ add_library(
 
 target_compile_options(
     common_flags
-    INTERFACE $<$<CXX_COMPILER_ID:MSVC>:
+    INTERFACE $<$<CXX_COMPILER_FRONTEND_VARIANT:MSVC>:
               /W4
               /WX
               /wd4100
@@ -27,7 +27,7 @@ target_compile_options(
               /diagnostics:caret
               /Zc:__cplusplus
               >
-              $<$<CXX_COMPILER_ID:Clang>:
+              $<$<CXX_COMPILER_FRONTEND_VARIANT:GNU>:
               -Wall
               -Werror
               -Wextra
@@ -50,11 +50,11 @@ target_compile_options(
 target_link_options(
     common_flags
     INTERFACE
-    $<$<CXX_COMPILER_ID:MSVC>:
+    $<$<CXX_COMPILER_FRONTEND_VARIANT:MSVC>:
     /entry:mainCRTStartup
     /WX
     >
-    $<$<CXX_COMPILER_ID:Clang>:
+    $<$<CXX_COMPILER_FRONTEND_VARIANT:GNU>:
     -Wl,/entry:mainCRTStartup,/WX
     >
     )
@@ -66,12 +66,12 @@ add_library(
 
 target_compile_options(
     common_flags_deps
-    INTERFACE $<$<CXX_COMPILER_ID:MSVC>:
+    INTERFACE $<$<CXX_COMPILER_FRONTEND_VARIANT:MSVC>:
               /bigobj
               /diagnostics:caret
               /Zc:__cplusplus
               >
-              $<$<CXX_COMPILER_ID:Clang>:
+              $<$<CXX_COMPILER_FRONTEND_VARIANT:GNU>:
               >
     )
 
