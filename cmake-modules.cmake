@@ -130,7 +130,7 @@ function(fetch_common)
         )
 
     add_library(
-        common_compile_options_deps
+        common_compile_options_no_warnings
         INTERFACE
         )
 
@@ -316,9 +316,9 @@ function(fetch_ada)
 
     target_link_libraries(
         ada
-        PRIVATE common::features
-                common::definitions
-                common::flags_deps
+        PRIVATE common::compile_features
+                common::compile_definitions
+                common::compile_options_no_warnings
         )
 endfunction()
 
@@ -397,9 +397,9 @@ function(fetch_sqlite)
 
     target_link_libraries(
         sqlite
-        PRIVATE common::definitions
-                common::features
-                common::flags_deps
+        PRIVATE common::compile_features
+                common::compile_definitions
+                common::compile_options_no_warnings
         )
 endfunction()
 
