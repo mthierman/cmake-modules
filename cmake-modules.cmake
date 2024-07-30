@@ -158,7 +158,7 @@ function(fetch_common)
         )
 
     add_library(
-        common::link_options
+        common::link_options_dll
         ALIAS
         common_link_options_dll
         )
