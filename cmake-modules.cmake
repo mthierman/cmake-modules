@@ -646,3 +646,25 @@ function(fetch_clap_wrapper)
 
     FetchContent_MakeAvailable(clap-wrapper)
 endfunction()
+
+function(fetch_hand)
+    set(args VERSION)
+    cmake_parse_arguments(
+        FETCH
+        ""
+        "${args}"
+        ""
+        ${ARGN}
+        )
+
+    FetchContent_Declare(
+        hand
+        GIT_REPOSITORY "https://github.com/mthierman/hand.git"
+        GIT_TAG ${FETCH_VERSION}
+        GIT_SHALLOW ON
+        SOURCE_SUBDIR
+        "NULL"
+        )
+
+    FetchContent_MakeAvailable(hand)
+endfunction()
