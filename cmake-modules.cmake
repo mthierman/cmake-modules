@@ -44,29 +44,56 @@ endfunction()
 
 function(fetch_common)
     add_library(
-        common_features
+        common_compile_features
         INTERFACE
         )
 
+    add_library(
+        common::compile_features
+        ALIAS
+        common_compile_features
+        )
+
     target_compile_features(
-        common_features
+        common_compile_features
         INTERFACE c_std_17
                   cxx_std_23
         )
 
     add_library(
-        common_flags
+        common_compile_definitions
         INTERFACE
         )
 
+    add_library(
+        common::compile_definitions
+        ALIAS
+        common_compile_definitions
+        )
+
+    target_compile_definitions(
+        common_compile_definitions
+        INTERFACE NOMINMAX
+                  WIN32_LEAN_AND_MEAN
+                  GDIPVER=0x0110
+        )
+
+    add_library(
+        common_compile_options
+        INTERFACE
+        )
+
+    add_library(
+        common::compile_options
+        ALIAS
+        common_compile_options
+        )
+
     target_compile_options(
-        common_flags
+        common_compile_options
         INTERFACE $<$<CXX_COMPILER_FRONTEND_VARIANT:MSVC>:
                   /W4
                   /WX
-                  /wd4100
-                  /wd4101
-                  /wd4189
                   /utf-8
                   /bigobj
                   /diagnostics:caret
@@ -77,40 +104,44 @@ function(fetch_common)
                   -Werror
                   -Wextra
                   -Wpedantic
-                  -Wno-language-extension-token
-                  -Wno-unused-parameter
-                  -Wno-unused-but-set-variable
-                  -Wno-unused-variable
-                  -Wno-missing-field-initializers
-                  -Wno-nonportable-include-path
-                  -Wno-sign-compare
-                  -Wno-unused-function
-                  -Wno-gnu-zero-variadic-macro-arguments
-                  -Wno-extra-semi
-                  -Wno-microsoft-enum-value
-                  -Wno-braced-scalar-init
                   >
         )
 
+    add_library(
+        common_link_options
+        INTERFACE
+        )
+
+    add_library(
+        common::link_options
+        ALIAS
+        common_link_options
+        )
+
     target_link_options(
-        common_flags
+        common_link_options
         INTERFACE
         $<$<CXX_COMPILER_FRONTEND_VARIANT:MSVC>:
-        /entry:mainCRTStartup
         /WX
         >
         $<$<CXX_COMPILER_FRONTEND_VARIANT:GNU>:
-        -Wl,/entry:mainCRTStartup,/WX
+        -Wl,/WX
         >
         )
 
     add_library(
-        common_flags_deps
+        common_compile_options_deps
         INTERFACE
         )
 
+    add_library(
+        common::compile_options_no_warnings
+        ALIAS
+        common_compile_options_no_warnings
+        )
+
     target_compile_options(
-        common_flags_deps
+        common_compile_options_no_warnings
         INTERFACE $<$<CXX_COMPILER_FRONTEND_VARIANT:MSVC>:
                   /bigobj
                   /diagnostics:caret
@@ -120,41 +151,9 @@ function(fetch_common)
                   >
         )
 
-    add_library(
-        common_definitions
-        INTERFACE
-        )
-
-    target_compile_definitions(
-        common_definitions
-        INTERFACE NOMINMAX
-                  WIN32_LEAN_AND_MEAN
-                  GDIPVER=0x0110
-        )
-
-    add_library(
-        common::features
-        ALIAS
-        common_features
-        )
-
-    add_library(
-        common::flags
-        ALIAS
-        common_flags
-        )
-
-    add_library(
-        common::flags_deps
-        ALIAS
-        common_flags_deps
-        )
-
-    add_library(
-        common::definitions
-        ALIAS
-        common_definitions
-        )
+    # target_link_options( common_main_entry INTERFACE $<$<CXX_COMPILER_FRONTEND_VARIANT:MSVC>:
+    # /entry:mainCRTStartup /WX > $<$<CXX_COMPILER_FRONTEND_VARIANT:GNU>:
+    # -Wl,/entry:mainCRTStartup,/WX > )
 endfunction()
 
 function(fetch_wil)
