@@ -640,8 +640,6 @@ function(fetch_clap_wrapper)
         GIT_REPOSITORY "https://github.com/free-audio/clap-wrapper.git"
         GIT_TAG ${FETCH_VERSION}
         GIT_SHALLOW ON
-        SOURCE_SUBDIR
-        "NULL"
         )
 
     FetchContent_MakeAvailable(clap-wrapper)
@@ -662,8 +660,6 @@ function(fetch_hand)
         GIT_REPOSITORY "https://github.com/mthierman/hand.git"
         GIT_TAG ${FETCH_VERSION}
         GIT_SHALLOW ON
-        SOURCE_SUBDIR
-        "NULL"
         )
 
     FetchContent_MakeAvailable(hand)
