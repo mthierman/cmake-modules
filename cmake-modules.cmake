@@ -209,11 +209,10 @@ function(fetch_cppwinrt)
 endfunction()
 
 function(fetch_webview2)
-    set(options CPPWINRT)
     set(args VERSION)
     cmake_parse_arguments(
         FETCH
-        "${options}"
+        ""
         "${args}"
         ""
         ${ARGN}
@@ -250,14 +249,16 @@ function(fetch_webview2)
 
     target_link_libraries(webview2 INTERFACE WebView2LoaderStatic.lib)
 
-    # if(${CPPWINRT})
-    #     execute_process(
-    #         COMMAND
-    #             cppwinrt -input "${webview2_SOURCE_DIR}/lib/Microsoft.Web.WebView2.Core.winmd" sdk
-    #             -output "${cppwinrt_SOURCE_DIR}/build/native/include"
-    #         WORKING_DIRECTORY "${cppwinrt_SOURCE_DIR}/bin"
-    #         )
-    # endif()
+    FetchContent_GetProperties(cppwinrt SOURCE_DIR cppwinrt_SOURCE_DIR)
+
+    if(cppwinrt_SOURCE_DIR)
+        execute_process(
+            COMMAND
+                cppwinrt -input "${webview2_SOURCE_DIR}/lib/Microsoft.Web.WebView2.Core.winmd" sdk
+                -output "${cppwinrt_SOURCE_DIR}/build/native/include"
+            WORKING_DIRECTORY "${cppwinrt_SOURCE_DIR}/bin"
+            )
+    endif()
 endfunction()
 
 function(fetch_ada)
@@ -422,7 +423,7 @@ function(fetch_choc)
         )
 endfunction()
 
-function(fetch_vcredist)
+function(fetch_vc_redist)
     file(
         DOWNLOAD
         "https://aka.ms/vs/17/release/vc_redist.x64.exe"
@@ -430,7 +431,7 @@ function(fetch_vcredist)
         )
 endfunction()
 
-function(release_info)
+function(make_release_info)
     cmake_path(
         SET
         NOTES_PATH
