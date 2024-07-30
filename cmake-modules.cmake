@@ -106,7 +106,7 @@ function(fetch_common)
                   -Wpedantic
                   >
         )
-        
+
     add_library(
         common_compile_options_no_warnings
         INTERFACE
@@ -130,40 +130,18 @@ function(fetch_common)
         )
 
     add_library(
-        common_link_options
-        INTERFACE
-        )
-
-    add_library(
-        common::link_options
-        ALIAS
-        common_link_options
-        )
-
-    target_link_options(
-        common_link_options
-        INTERFACE
-        $<$<CXX_COMPILER_FRONTEND_VARIANT:MSVC>:
-        /WX
-        >
-        $<$<CXX_COMPILER_FRONTEND_VARIANT:GNU>:
-        -Wl,/WX
-        >
-        )
-
-    add_library(
-        common_link_options_main
+        common_link_options_exe
         INTERFACE
         )
 
     add_library(
         common::link_options_main
         ALIAS
-        common_link_options_main
+        common_link_options_exe
         )
 
     target_link_options(
-        common_link_options_main
+        common_link_options_exe
         INTERFACE
         $<$<CXX_COMPILER_FRONTEND_VARIANT:MSVC>:
         /entry:mainCRTStartup
@@ -171,6 +149,28 @@ function(fetch_common)
         >
         $<$<CXX_COMPILER_FRONTEND_VARIANT:GNU>:
         -Wl,/entry:mainCRTStartup,/WX
+        >
+        )
+
+    add_library(
+        common_link_options_dll
+        INTERFACE
+        )
+
+    add_library(
+        common::link_options
+        ALIAS
+        common_link_options_dll
+        )
+
+    target_link_options(
+        common_link_options_dll
+        INTERFACE
+        $<$<CXX_COMPILER_FRONTEND_VARIANT:MSVC>:
+        /WX
+        >
+        $<$<CXX_COMPILER_FRONTEND_VARIANT:GNU>:
+        -Wl,/WX
         >
         )
 endfunction()
