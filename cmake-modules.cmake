@@ -1,7 +1,7 @@
 include(FetchContent)
 
 function(
-    fetch
+    fetch_git
     name
     url
     branch
@@ -12,6 +12,17 @@ function(
         GIT_TAG ${branch}
         GIT_SHALLOW ON
         )
+
+    FetchContent_MakeAvailable(${name})
+endfunction()
+
+function(
+    fetch_url
+    name
+    url
+    branch
+    )
+    FetchContent_Declare(${name} URL ${url})
 
     FetchContent_MakeAvailable(${name})
 endfunction()
