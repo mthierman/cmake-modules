@@ -1,29 +1,45 @@
 include(FetchContent)
 
-function(
-    fetch_git
-    name
-    repo
-    branch
-    )
+function(fetch_git)
+    set(args
+        NAME
+        REPO
+        BRANCH
+        )
+    cmake_parse_arguments(
+        FETCH
+        ""
+        "${args}"
+        ""
+        ${ARGN}
+        )
+
     FetchContent_Declare(
-        ${name}
-        GIT_REPOSITORY "https://github.com/${repo}.git"
-        GIT_TAG ${branch}
+        ${FETCH_NAME}
+        GIT_REPOSITORY "https://github.com/${FETCH_REPO}.git"
+        GIT_TAG ${FETCH_BRANCH}
         GIT_SHALLOW ON
         )
 
-    FetchContent_MakeAvailable(${name})
+    FetchContent_MakeAvailable(${FETCH_NAME})
 endfunction()
 
-function(
-    fetch_url
-    name
-    url
-    )
-    FetchContent_Declare(${name} URL ${url})
+function(fetch_url)
+    set(args
+        NAME
+        URL
+        )
+    cmake_parse_arguments(
+        FETCH
+        ""
+        "${args}"
+        ""
+        ${ARGN}
+        )
 
-    FetchContent_MakeAvailable(${name})
+    FetchContent_Declare(${FETCH_NAME} URL ${FETCH_URL})
+
+    FetchContent_MakeAvailable(${FETCH_NAME})
 endfunction()
 
 function(fetch_common)
