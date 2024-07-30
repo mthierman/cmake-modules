@@ -151,9 +151,28 @@ function(fetch_common)
                   >
         )
 
-    # target_link_options( common_main_entry INTERFACE $<$<CXX_COMPILER_FRONTEND_VARIANT:MSVC>:
-    # /entry:mainCRTStartup /WX > $<$<CXX_COMPILER_FRONTEND_VARIANT:GNU>:
-    # -Wl,/entry:mainCRTStartup,/WX > )
+    add_library(
+        common_link_options_main
+        INTERFACE
+        )
+
+    add_library(
+        common::link_options_main
+        ALIAS
+        common_link_options_main
+        )
+
+    target_link_options(
+        common_link_options_main
+        INTERFACE
+        $<$<CXX_COMPILER_FRONTEND_VARIANT:MSVC>:
+        /entry:mainCRTStartup
+        /WX
+        >
+        $<$<CXX_COMPILER_FRONTEND_VARIANT:GNU>:
+        -Wl,/entry:mainCRTStartup,/WX
+        >
+        )
 endfunction()
 
 function(fetch_wil)
