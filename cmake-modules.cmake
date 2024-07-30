@@ -106,6 +106,28 @@ function(fetch_common)
                   -Wpedantic
                   >
         )
+        
+    add_library(
+        common_compile_options_no_warnings
+        INTERFACE
+        )
+
+    add_library(
+        common::compile_options_no_warnings
+        ALIAS
+        common_compile_options_no_warnings
+        )
+
+    target_compile_options(
+        common_compile_options_no_warnings
+        INTERFACE $<$<CXX_COMPILER_FRONTEND_VARIANT:MSVC>:
+                  /bigobj
+                  /diagnostics:caret
+                  /Zc:__cplusplus
+                  >
+                  $<$<CXX_COMPILER_FRONTEND_VARIANT:GNU>:
+                  >
+        )
 
     add_library(
         common_link_options
@@ -127,28 +149,6 @@ function(fetch_common)
         $<$<CXX_COMPILER_FRONTEND_VARIANT:GNU>:
         -Wl,/WX
         >
-        )
-
-    add_library(
-        common_compile_options_no_warnings
-        INTERFACE
-        )
-
-    add_library(
-        common::compile_options_no_warnings
-        ALIAS
-        common_compile_options_no_warnings
-        )
-
-    target_compile_options(
-        common_compile_options_no_warnings
-        INTERFACE $<$<CXX_COMPILER_FRONTEND_VARIANT:MSVC>:
-                  /bigobj
-                  /diagnostics:caret
-                  /Zc:__cplusplus
-                  >
-                  $<$<CXX_COMPILER_FRONTEND_VARIANT:GNU>:
-                  >
         )
 
     add_library(
