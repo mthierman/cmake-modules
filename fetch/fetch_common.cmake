@@ -79,7 +79,8 @@ function(fetch_common)
     target_compile_options(
         common_compile_options_no_warnings
         INTERFACE $<$<CXX_COMPILER_FRONTEND_VARIANT:MSVC>:
-                  /NOLOGO
+                  /MP
+                  /nologo
                   /bigobj
                   /diagnostics:caret
                   /Zc:__cplusplus
@@ -105,9 +106,10 @@ function(fetch_common)
         $<$<CXX_COMPILER_FRONTEND_VARIANT:MSVC>:
         /entry:mainCRTStartup
         /WX
+        /NOLOGO
         >
         $<$<CXX_COMPILER_FRONTEND_VARIANT:GNU>:
-        -Wl,/entry:mainCRTStartup,/WX
+        -Wl,/entry:mainCRTStartup,/WX,/NOLOGO
         >
         )
 
@@ -127,9 +129,10 @@ function(fetch_common)
         INTERFACE
         $<$<CXX_COMPILER_FRONTEND_VARIANT:MSVC>:
         /WX
+        /NOLOGO
         >
         $<$<CXX_COMPILER_FRONTEND_VARIANT:GNU>:
-        -Wl,/WX
+        -Wl,/WX,/NOLOGO
         >
         )
 endfunction()
