@@ -92,18 +92,8 @@ function(fetch_common)
                   /Zc:__cplusplus
                   >
                   $<$<AND:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_FRONTEND_VARIANT:MSVC>>:
-                  /MP
-                  /nologo
-                  /utf-8
-                  /bigobj
-                  /diagnostics:caret
-                  /Zc:__cplusplus
                   >
                   $<$<AND:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_FRONTEND_VARIANT:GNU>>:
-                  -Wall
-                  -Werror
-                  -Wextra
-                  -Wpedantic
                   >
         )
 
