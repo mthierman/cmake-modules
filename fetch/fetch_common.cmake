@@ -60,12 +60,10 @@ function(fetch_common)
                   $<$<AND:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_FRONTEND_VARIANT:MSVC>>:
                   /W4
                   /WX
-                  # -Wno-braced-scalar-init -Wno-nonportable-include-path
                   >
                   $<$<AND:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_FRONTEND_VARIANT:GNU>>:
                   -Wall
                   -Werror
-                  # -Wextra -Wpedantic
                   >
         )
 
