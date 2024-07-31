@@ -60,7 +60,6 @@ function(fetch_common)
                   $<$<AND:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_FRONTEND_VARIANT:MSVC>>:
                   /W4
                   /WX
-                  /MP
                   /nologo
                   /utf-8
                   /bigobj
