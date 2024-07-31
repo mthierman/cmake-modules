@@ -47,7 +47,7 @@ function(fetch_common)
 
     target_compile_options(
         common_compile_options
-        INTERFACE $<$<CXX_COMPILER_FRONTEND_VARIANT:MSVC>:
+        INTERFACE $<$<CXX_COMPILER_ID:MSVC>:
                   /W4
                   /WX
                   /MP
@@ -57,7 +57,17 @@ function(fetch_common)
                   /diagnostics:caret
                   /Zc:__cplusplus
                   >
-                  $<$<CXX_COMPILER_FRONTEND_VARIANT:GNU>:
+                  $<$<AND:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_FRONTEND_VARIANT:MSVC>>:
+                  /W4
+                  /WX
+                  /MP
+                  /nologo
+                  /utf-8
+                  /bigobj
+                  /diagnostics:caret
+                  /Zc:__cplusplus
+                  >
+                  $<$<AND:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_FRONTEND_VARIANT:GNU>>:
                   -Wall
                   -Werror
                   -Wextra
@@ -79,7 +89,7 @@ function(fetch_common)
     target_compile_options(
         common_compile_options_no_warnings
         INTERFACE $<$<CXX_COMPILER_FRONTEND_VARIANT:MSVC>:
-                  /MP
+                  # /MP
                   /nologo
                   /bigobj
                   /diagnostics:caret
