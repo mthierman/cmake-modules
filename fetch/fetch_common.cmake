@@ -51,6 +51,7 @@ function(fetch_common)
                   /W4
                   /WX
                   /MP
+                  /nologo
                   /utf-8
                   /bigobj
                   /diagnostics:caret
@@ -78,6 +79,7 @@ function(fetch_common)
     target_compile_options(
         common_compile_options_no_warnings
         INTERFACE $<$<CXX_COMPILER_FRONTEND_VARIANT:MSVC>:
+                  /NOLOGO
                   /bigobj
                   /diagnostics:caret
                   /Zc:__cplusplus
