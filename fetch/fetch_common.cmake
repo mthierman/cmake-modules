@@ -65,6 +65,7 @@ function(fetch_common)
                   /bigobj
                   /diagnostics:caret
                   /Zc:__cplusplus
+                  # -Wno-braced-scalar-init -Wno-nonportable-include-path
                   >
                   $<$<AND:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_FRONTEND_VARIANT:GNU>>:
                   -Wall
