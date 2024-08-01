@@ -15,8 +15,6 @@ function(fetch_juce)
         GIT_REPOSITORY "https://github.com/juce-framework/JUCE.git"
         GIT_TAG ${FETCH_VERSION}
         GIT_SHALLOW ON
-        SOURCE_SUBDIR
-        "NULL"
         )
 
     FetchContent_MakeAvailable(juce)
