@@ -8,8 +8,6 @@ function(fetch_wil)
         ${ARGN}
         )
 
-
-
     FetchContent_Declare(
         wil
         URL "https://www.nuget.org/api/v2/package/Microsoft.Windows.ImplementationLibrary/${FETCH_VERSION}"
