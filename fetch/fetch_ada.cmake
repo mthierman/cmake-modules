@@ -8,11 +8,17 @@ function(fetch_ada)
         ${ARGN}
         )
 
+    if(TARGET
+       ada
+        )
+        message(WARNING "fetch_ada already called, ignoring")
+        return()
+    endif()
+
     include(FetchContent)
 
     FetchContent_Declare(
-        ada
-        URL "https://github.com/ada-url/ada/releases/download/v${FETCH_VERSION}/singleheader.zip"
+        ada URL "https://github.com/ada-url/ada/releases/download/${FETCH_VERSION}/singleheader.zip"
         DOWNLOAD_NO_PROGRESS TRUE
         )
 
