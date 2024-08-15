@@ -8,15 +8,18 @@ function(fetch_choc)
         ${ARGN}
         )
 
+    if(TARGET
+       ada
+        )
+        message(WARNING "fetch_choc already called, ignoring")
+        return()
+    endif()
+
     include(FetchContent)
 
     FetchContent_Declare(
-        choc
-        GIT_REPOSITORY "https://github.com/Tracktion/choc.git"
-        GIT_TAG ${FETCH_VERSION}
-        GIT_SHALLOW ON
-        SOURCE_SUBDIR
-        "NULL"
+        choc URL "https://github.com/Tracktion/choc/archive/refs/heads/${FETCH_VERSION}.zip"
+        DOWNLOAD_NO_PROGRESS TRUE
         )
 
     FetchContent_MakeAvailable(choc)
