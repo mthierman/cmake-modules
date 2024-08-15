@@ -8,6 +8,13 @@ function(fetch_webview2)
         ${ARGN}
         )
 
+    if(TARGET
+       webview2
+        )
+        message(WARNING "fetch_webview2 already called, ignoring")
+        return()
+    endif()
+
     include(FetchContent)
 
     FetchContent_Declare(

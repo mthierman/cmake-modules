@@ -8,6 +8,13 @@ function(fetch_cppwinrt)
         ${ARGN}
         )
 
+    if(TARGET
+       cppwinrt
+        )
+        message(WARNING "fetch_cppwinrt already called, ignoring")
+        return()
+    endif()
+
     include(FetchContent)
 
     FetchContent_Declare(
