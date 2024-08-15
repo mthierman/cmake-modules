@@ -25,7 +25,7 @@ function(fetch_clap_helpers)
     include(FetchContent)
 
     FetchContent_Declare(
-        choc
+        clap-helpers
         URL "https://github.com/free-audio/clap-helpers/archive/refs/heads/${FETCH_VERSION}.zip"
         DOWNLOAD_NO_PROGRESS TRUE
         SOURCE_SUBDIR
