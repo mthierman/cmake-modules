@@ -1,5 +1,6 @@
 function(fetch_json)
     set(args VERSION)
+
     cmake_parse_arguments(
         FETCH
         ""
@@ -8,18 +9,11 @@ function(fetch_json)
         ${ARGN}
         )
 
-    if(TARGET
-       json
-        )
-        message(WARNING "fetch_json already called, ignoring")
-        return()
-    endif()
-
     if(NOT
        DEFINED
        FETCH_VERSION
         )
-        set(FETCH_VERSION "develop")
+        message(FATAL_ERROR "Version is required")
     endif()
 
     include(FetchContent)

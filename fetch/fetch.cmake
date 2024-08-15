@@ -5,6 +5,7 @@ function(fetch_git)
         BRANCH
         SHALLOW
         )
+
     cmake_parse_arguments(
         FETCH
         ""
@@ -31,6 +32,7 @@ function(fetch_url)
         URL
         PROGRESS
         )
+
     cmake_parse_arguments(
         FETCH
         ""

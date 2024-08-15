@@ -1,5 +1,6 @@
 function(fetch_hand)
     set(args VERSION)
+
     cmake_parse_arguments(
         FETCH
         ""
@@ -12,7 +13,7 @@ function(fetch_hand)
        DEFINED
        FETCH_VERSION
         )
-        set(FETCH_VERSION "main")
+        message(FATAL_ERROR "Version is required")
     endif()
 
     include(FetchContent)

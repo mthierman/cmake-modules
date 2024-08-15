@@ -1,5 +1,6 @@
 function(fetch_clap_helpers)
     set(args VERSION)
+
     cmake_parse_arguments(
         FETCH
         ""
@@ -8,18 +9,11 @@ function(fetch_clap_helpers)
         ${ARGN}
         )
 
-    if(TARGET
-       clap-helpers
-        )
-        message(WARNING "fetch_clap_helpers already called, ignoring")
-        return()
-    endif()
-
     if(NOT
        DEFINED
        FETCH_VERSION
         )
-        set(FETCH_VERSION "main")
+        message(FATAL_ERROR "Version is required")
     endif()
 
     include(FetchContent)

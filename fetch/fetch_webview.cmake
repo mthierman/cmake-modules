@@ -1,5 +1,6 @@
 function(fetch_webview2)
     set(args VERSION)
+
     cmake_parse_arguments(
         FETCH
         ""
@@ -8,11 +9,11 @@ function(fetch_webview2)
         ${ARGN}
         )
 
-    if(TARGET
-       webview2
+    if(NOT
+       DEFINED
+       FETCH_VERSION
         )
-        message(WARNING "fetch_webview2 already called, ignoring")
-        return()
+        message(FATAL_ERROR "Version is required")
     endif()
 
     include(FetchContent)

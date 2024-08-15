@@ -1,5 +1,6 @@
 function(fetch_wil)
     set(args VERSION)
+
     cmake_parse_arguments(
         FETCH
         ""
@@ -8,11 +9,11 @@ function(fetch_wil)
         ${ARGN}
         )
 
-    if(TARGET
-       wil
+    if(NOT
+       DEFINED
+       FETCH_VERSION
         )
-        message(WARNING "fetch_wil already called, ignoring")
-        return()
+        message(FATAL_ERROR "Version is required")
     endif()
 
     include(FetchContent)
