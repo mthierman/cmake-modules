@@ -31,10 +31,4 @@ function(fetch_clap_wrapper)
         )
 
     FetchContent_MakeAvailable(clap-wrapper)
-
-    add_library(
-        free-audio::clap-wrapper
-        ALIAS
-        clap-wrapper
-        )
 endfunction()
