@@ -8,6 +8,13 @@ function(fetch_sqlite)
         ${ARGN}
         )
 
+    if(TARGET
+       sqlite
+        )
+        message(WARNING "fetch_sqlite already called, ignoring")
+        return()
+    endif()
+
     include(FetchContent)
 
     FetchContent_Declare(
