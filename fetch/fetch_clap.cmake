@@ -15,6 +15,13 @@ function(fetch_clap)
         return()
     endif()
 
+    if(NOT
+       DEFINED
+       FETCH_VERSION
+        )
+        set(FETCH_VERSION "main")
+    endif()
+
     include(FetchContent)
 
     FetchContent_Declare(

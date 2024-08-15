@@ -15,6 +15,13 @@ function(fetch_json)
         return()
     endif()
 
+    if(NOT
+       DEFINED
+       FETCH_VERSION
+        )
+        set(FETCH_VERSION "develop")
+    endif()
+
     include(FetchContent)
 
     FetchContent_Declare(

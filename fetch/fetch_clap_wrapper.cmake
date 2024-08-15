@@ -15,11 +15,18 @@ function(fetch_clap_wrapper)
         return()
     endif()
 
+    if(NOT
+       DEFINED
+       FETCH_VERSION
+        )
+        set(FETCH_VERSION "main")
+    endif()
+
     include(FetchContent)
 
     FetchContent_Declare(
         clap-wrapper
-        URL "https://github.com/free-audio/clap-helpers/archive/refs/heads/${FETCH_VERSION}.zip"
+        URL "https://github.com/free-audio/clap-wrapper/archive/refs/heads/${FETCH_VERSION}.zip"
         DOWNLOAD_NO_PROGRESS TRUE
         )
 

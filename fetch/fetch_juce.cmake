@@ -10,11 +10,16 @@ function(fetch_juce)
 
     include(FetchContent)
 
+    if(NOT
+       DEFINED
+       FETCH_VERSION
+        )
+        set(FETCH_VERSION "master")
+    endif()
+
     FetchContent_Declare(
-        juce
-        GIT_REPOSITORY "https://github.com/juce-framework/JUCE.git"
-        GIT_TAG ${FETCH_VERSION}
-        GIT_SHALLOW ON
+        juce URL "https://github.com/juce-framework/JUCE/archive/refs/heads/${FETCH_VERSION}.zip"
+        DOWNLOAD_NO_PROGRESS TRUE
         )
 
     FetchContent_MakeAvailable(juce)

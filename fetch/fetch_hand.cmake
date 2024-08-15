@@ -8,6 +8,13 @@ function(fetch_hand)
         ${ARGN}
         )
 
+    if(NOT
+       DEFINED
+       FETCH_VERSION
+        )
+        set(FETCH_VERSION "main")
+    endif()
+
     include(FetchContent)
 
     FetchContent_Declare(
