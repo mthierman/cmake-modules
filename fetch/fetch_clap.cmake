@@ -8,15 +8,18 @@ function(fetch_clap)
         ${ARGN}
         )
 
+    if(TARGET
+       clap
+        )
+        message(WARNING "fetch_clap already called, ignoring")
+        return()
+    endif()
+
     include(FetchContent)
 
     FetchContent_Declare(
-        clap
-        GIT_REPOSITORY "https://github.com/free-audio/clap.git"
-        GIT_TAG ${FETCH_VERSION}
-        GIT_SHALLOW ON
-        SOURCE_SUBDIR
-        "NULL"
+        clap URL "https://github.com/free-audio/clap/archive/refs/heads/${FETCH_VERSION}.zip"
+        DOWNLOAD_NO_PROGRESS TRUE
         )
 
     FetchContent_MakeAvailable(clap)
