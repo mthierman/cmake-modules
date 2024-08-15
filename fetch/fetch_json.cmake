@@ -8,6 +8,13 @@ function(fetch_json)
         ${ARGN}
         )
 
+    if(TARGET
+       json
+        )
+        message(WARNING "fetch_json already called, ignoring")
+        return()
+    endif()
+
     include(FetchContent)
 
     FetchContent_Declare(
