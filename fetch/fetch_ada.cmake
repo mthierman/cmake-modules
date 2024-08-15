@@ -25,8 +25,11 @@ function(fetch_ada)
     include(FetchContent)
 
     FetchContent_Declare(
-        ada URL "https://github.com/ada-url/ada/releases/download/${FETCH_VERSION}/singleheader.zip"
+        ada
+        URL "https://github.com/ada-url/ada/releases/download/${FETCH_VERSION}/singleheader.zip"
         DOWNLOAD_NO_PROGRESS TRUE
+        SOURCE_SUBDIR
+        "NULL"
         )
 
     FetchContent_MakeAvailable(ada)

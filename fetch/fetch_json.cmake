@@ -25,8 +25,11 @@ function(fetch_json)
     include(FetchContent)
 
     FetchContent_Declare(
-        json URL "https://github.com/nlohmann/json/releases/download/v${FETCH_VERSION}/include.zip"
+        json
+        URL "https://github.com/nlohmann/json/releases/download/v${FETCH_VERSION}/include.zip"
         DOWNLOAD_NO_PROGRESS TRUE
+        SOURCE_SUBDIR
+        "NULL"
         )
 
     FetchContent_MakeAvailable(json)

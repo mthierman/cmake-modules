@@ -25,8 +25,11 @@ function(fetch_choc)
     include(FetchContent)
 
     FetchContent_Declare(
-        choc URL "https://github.com/Tracktion/choc/archive/refs/heads/${FETCH_VERSION}.zip"
+        choc
+        URL "https://github.com/Tracktion/choc/archive/refs/heads/${FETCH_VERSION}.zip"
         DOWNLOAD_NO_PROGRESS TRUE
+        SOURCE_SUBDIR
+        "NULL"
         )
 
     FetchContent_MakeAvailable(choc)

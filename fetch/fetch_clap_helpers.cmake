@@ -28,6 +28,8 @@ function(fetch_clap_helpers)
         choc
         URL "https://github.com/free-audio/clap-helpers/archive/refs/heads/${FETCH_VERSION}.zip"
         DOWNLOAD_NO_PROGRESS TRUE
+        SOURCE_SUBDIR
+        "NULL"
         )
 
     FetchContent_MakeAvailable(clap-helpers)
