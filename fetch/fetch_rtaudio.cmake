@@ -36,7 +36,7 @@ function(fetch_rtaudio)
         rtaudio
         )
 
-    file(COPY "${rtmidi_SOURCE_DIR}/RtMidi.h"
+    file(COPY "${rtaudio_SOURCE_DIR}/RtAudio.h"
          DESTINATION "${CMAKE_BINARY_DIR}/include/thestk/rtaudio"
         )
 
