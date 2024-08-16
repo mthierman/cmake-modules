@@ -27,4 +27,28 @@ function(fetch_rtaudio)
         )
 
     FetchContent_MakeAvailable(rtaudio)
+
+    add_library(rtaudio)
+
+    add_library(
+        thestk::rtaudio
+        ALIAS
+        rtaudio
+        )
+
+    target_sources(
+        rtaudio
+        PRIVATE "${rtaudio_SOURCE_DIR}/RtAudio.cpp"
+        PUBLIC FILE_SET
+               HEADERS
+               BASE_DIRS
+               "${rtaudio_SOURCE_DIR}"
+        )
+
+    target_link_libraries(
+        rtaudio
+        PRIVATE common::compile_features
+                common::compile_definitions
+                common::compile_options_no_warnings
+        )
 endfunction()
