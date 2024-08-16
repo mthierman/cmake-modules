@@ -36,13 +36,17 @@ function(fetch_rtaudio)
         rtaudio
         )
 
+    file(COPY "${rtmidi_SOURCE_DIR}/RtMidi.h"
+         DESTINATION "${CMAKE_BINARY_DIR}/include/thestk/rtaudio"
+        )
+
     target_sources(
         rtaudio
         PRIVATE "${rtaudio_SOURCE_DIR}/RtAudio.cpp"
         PUBLIC FILE_SET
                HEADERS
                BASE_DIRS
-               "${rtaudio_SOURCE_DIR}"
+               "${CMAKE_BINARY_DIR}/include/thestk/rtaudio"
         )
 
     target_link_libraries(
