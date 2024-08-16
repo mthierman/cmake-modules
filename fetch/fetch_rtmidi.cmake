@@ -19,8 +19,11 @@ function(fetch_rtmidi)
     include(FetchContent)
 
     FetchContent_Declare(
-        rtmidi URL "https://github.com/thestk/rtmidi/archive/refs/heads/${FETCH_VERSION}.zip"
+        rtmidi
+        URL "https://github.com/thestk/rtmidi/archive/refs/heads/${FETCH_VERSION}.zip"
         DOWNLOAD_NO_PROGRESS TRUE
+        SOURCE_SUBDIR
+        "NULL"
         )
 
     FetchContent_MakeAvailable(rtmidi)
