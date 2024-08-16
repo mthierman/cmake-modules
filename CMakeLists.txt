@@ -2,14 +2,11 @@ cmake_minimum_required(VERSION 3.30)
 
 project(CMakeModules VERSION 0.0.0)
 
-include(fetch/fetch.cmake)
-
 include(fetch/fetch_ada.cmake)
 include(fetch/fetch_choc.cmake)
 include(fetch/fetch_clap_helpers.cmake)
 include(fetch/fetch_clap_wrapper.cmake)
 include(fetch/fetch_clap.cmake)
-include(fetch/fetch_common.cmake)
 include(fetch/fetch_cppwinrt.cmake)
 include(fetch/fetch_glow.cmake)
 include(fetch/fetch_hand.cmake)
@@ -21,5 +18,9 @@ include(fetch/fetch_sqlite.cmake)
 include(fetch/fetch_webview.cmake)
 include(fetch/fetch_wil.cmake)
 
+include(utility/common.cmake)
 include(utility/make_release_info.cmake)
+include(utility/fetch.cmake)
 include(utility/download_vc_redist.cmake)
+
+common()
