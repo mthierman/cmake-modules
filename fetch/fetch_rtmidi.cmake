@@ -28,10 +28,7 @@ function(fetch_rtmidi)
 
     FetchContent_MakeAvailable(rtmidi)
 
-    add_library(
-        rtmidi
-        INTERFACE
-        )
+    add_library(rtmidi)
 
     add_library(
         thestk::rtmidi
@@ -41,11 +38,11 @@ function(fetch_rtmidi)
 
     target_sources(
         rtmidi
-        PRIVATE "${rtmidi_SOURCE_DIR}/"
+        PRIVATE "${rtmidi_SOURCE_DIR}/RtMidi.cpp"
         PUBLIC FILE_SET
                HEADERS
                BASE_DIRS
-               "${rtmidi_SOURCE_DIR}/include"
+               "${rtmidi_SOURCE_DIR}"
         )
 
     target_link_libraries(
