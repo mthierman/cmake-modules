@@ -19,8 +19,11 @@ function(fetch_webview2)
     include(FetchContent)
 
     FetchContent_Declare(
-        webview2 URL "https://www.nuget.org/api/v2/package/Microsoft.Web.WebView2/${FETCH_VERSION}"
+        webview2
+        URL "https://www.nuget.org/api/v2/package/Microsoft.Web.WebView2/${FETCH_VERSION}"
         DOWNLOAD_NO_PROGRESS TRUE
+        SOURCE_SUBDIR
+        "NULL"
         )
 
     FetchContent_MakeAvailable(webview2)

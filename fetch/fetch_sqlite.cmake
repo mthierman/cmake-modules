@@ -19,8 +19,11 @@ function(fetch_sqlite)
     include(FetchContent)
 
     FetchContent_Declare(
-        sqlite URL "https://www.sqlite.org/2024/sqlite-amalgamation-${FETCH_VERSION}.zip"
+        sqlite
+        URL "https://www.sqlite.org/2024/sqlite-amalgamation-${FETCH_VERSION}.zip"
         DOWNLOAD_NO_PROGRESS TRUE
+        SOURCE_SUBDIR
+        "NULL"
         )
 
     FetchContent_MakeAvailable(sqlite)
