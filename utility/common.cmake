@@ -112,7 +112,7 @@ function(common)
         /WX
         /NOLOGO
         >
-        $<$<CXX_COMPILER_FRONTEND_VARIANT:GNU>:
+        $<$<AND:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_FRONTEND_VARIANT:GNU>>:
         -Wl,/entry:mainCRTStartup,/WX,/NOLOGO
         >
         )
@@ -135,7 +135,7 @@ function(common)
         /WX
         /NOLOGO
         >
-        $<$<CXX_COMPILER_FRONTEND_VARIANT:GNU>:
+        $<$<AND:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_FRONTEND_VARIANT:GNU>>:
         -Wl,/WX,/NOLOGO
         >
         )
