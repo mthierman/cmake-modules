@@ -107,7 +107,12 @@ function(common)
     target_link_options(
         common_link_options_exe
         INTERFACE
-        $<$<CXX_COMPILER_FRONTEND_VARIANT:MSVC>:
+        $<$<CXX_COMPILER_ID:MSVC>:
+        /entry:mainCRTStartup
+        /WX
+        /NOLOGO
+        >
+        $<$<AND:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_FRONTEND_VARIANT:MSVC>>:
         /entry:mainCRTStartup
         /WX
         /NOLOGO
@@ -131,7 +136,11 @@ function(common)
     target_link_options(
         common_link_options_lib
         INTERFACE
-        $<$<CXX_COMPILER_FRONTEND_VARIANT:MSVC>:
+        $<$<CXX_COMPILER_ID:MSVC>:
+        /WX
+        /NOLOGO
+        >
+        $<$<AND:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_FRONTEND_VARIANT:MSVC>>:
         /WX
         /NOLOGO
         >
