@@ -1,4 +1,4 @@
-function(common)
+function(fetch_common)
     add_library(
         common_compile_features
         INTERFACE
