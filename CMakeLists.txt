@@ -19,8 +19,6 @@ include(fetch/fetch_webview.cmake)
 include(fetch/fetch_wil.cmake)
 
 include(utility/common.cmake)
-include(utility/make_release_info.cmake)
-include(utility/fetch.cmake)
 include(utility/download_vc_redist.cmake)
-
-common()
+include(utility/fetch.cmake)
+include(utility/make_release_info.cmake)
