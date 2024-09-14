@@ -31,6 +31,7 @@ function(fetch_common)
         common_compile_definitions
         INTERFACE NOMINMAX
                   WIN32_LEAN_AND_MEAN
+                  GDIPVER=0x0110
         )
 
     add_library(
