@@ -19,31 +19,31 @@ function(fetch_choc)
     include(FetchContent)
 
     FetchContent_Declare(
-        choc
+        tracktion_choc
         URL "https://github.com/Tracktion/choc/archive/refs/heads/${FETCH_VERSION}.zip"
         DOWNLOAD_NO_PROGRESS TRUE
         SOURCE_SUBDIR
         "NULL"
         )
 
-    FetchContent_MakeAvailable(choc)
+    FetchContent_MakeAvailable(tracktion_choc)
 
     add_library(
-        choc
+        tracktion_choc
         INTERFACE
         )
 
     add_library(
         tracktion::choc
         ALIAS
-        choc
+        tracktion_choc
         )
 
     target_sources(
-        choc
+        tracktion_choc
         PUBLIC FILE_SET
                HEADERS
                BASE_DIRS
-               "${choc_SOURCE_DIR}"
+               "${tracktion_choc_SOURCE_DIR}"
         )
 endfunction()
