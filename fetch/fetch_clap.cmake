@@ -19,31 +19,31 @@ function(fetch_clap)
     include(FetchContent)
 
     FetchContent_Declare(
-        clap
+        free-audio_clap
         URL "https://github.com/free-audio/clap/archive/refs/heads/${FETCH_VERSION}.zip"
         DOWNLOAD_NO_PROGRESS TRUE
         SOURCE_SUBDIR
         "NULL"
         )
 
-    FetchContent_MakeAvailable(clap)
+    FetchContent_MakeAvailable(free-audio_clap)
 
     add_library(
-        clap
+        free-audio_clap
         INTERFACE
         )
 
     add_library(
         free-audio::clap
         ALIAS
-        clap
+        free-audio_clap
         )
 
     target_sources(
-        clap
+        free-audio_clap
         INTERFACE FILE_SET
                   HEADERS
                   BASE_DIRS
-                  "${clap_SOURCE_DIR}/include"
+                  "${free-audio_clap_SOURCE_DIR}/include"
         )
 endfunction()
