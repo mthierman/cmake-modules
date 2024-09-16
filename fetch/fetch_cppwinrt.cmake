@@ -19,30 +19,32 @@ function(fetch_cppwinrt)
     include(FetchContent)
 
     FetchContent_Declare(
-        cppwinrt
+        microsoft_cppwinrt
         URL "https://www.nuget.org/api/v2/package/Microsoft.Windows.CppWinRT/${FETCH_VERSION}"
         DOWNLOAD_NO_PROGRESS TRUE
         SOURCE_SUBDIR
         "NULL"
         )
 
-    FetchContent_MakeAvailable(cppwinrt)
+    FetchContent_MakeAvailable(microsoft_cppwinrt)
 
     add_library(
-        cppwinrt
+        microsoft_cppwinrt
         INTERFACE
         )
 
     add_library(
         microsoft::cppwinrt
         ALIAS
-        cppwinrt
+        microsoft_cppwinrt
         )
 
     execute_process(
-        COMMAND cppwinrt -input sdk -output "${cppwinrt_SOURCE_DIR}/build/native/include"
-        WORKING_DIRECTORY "${cppwinrt_SOURCE_DIR}/bin"
+        COMMAND cppwinrt -input sdk -output "${microsoft_cppwinrt_SOURCE_DIR}/build/native/include"
+        WORKING_DIRECTORY "${microsoft_cppwinrt_SOURCE_DIR}/bin"
         )
 
-    target_include_directories(cppwinrt INTERFACE "${cppwinrt_SOURCE_DIR}/build/native/include")
+    target_include_directories(
+        cppwinrt INTERFACE "${microsoft_cppwinrt_SOURCE_DIR}/build/native/include"
+        )
 endfunction()
