@@ -19,11 +19,11 @@ function(fetch_hand)
     include(FetchContent)
 
     FetchContent_Declare(
-        hand
+        mthierman_hand
         GIT_REPOSITORY "https://github.com/mthierman/Hand.git"
         GIT_TAG ${FETCH_VERSION}
         GIT_SHALLOW ON
         )
 
-    FetchContent_MakeAvailable(hand)
+    FetchContent_MakeAvailable(mthierman_hand)
 endfunction()
