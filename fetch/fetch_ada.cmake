@@ -19,34 +19,34 @@ function(fetch_ada)
     include(FetchContent)
 
     FetchContent_Declare(
-        ada
+        ada-url_ada
         URL "https://github.com/ada-url/ada/releases/download/${FETCH_VERSION}/singleheader.zip"
         DOWNLOAD_NO_PROGRESS TRUE
         SOURCE_SUBDIR
         "NULL"
         )
 
-    FetchContent_MakeAvailable(ada)
+    FetchContent_MakeAvailable(ada-url_ada)
 
-    add_library(ada)
+    add_library(ada-url_ada)
 
     add_library(
         ada-url::ada
         ALIAS
-        ada
+        ada-url_ada
         )
 
     target_sources(
-        ada
-        PRIVATE "${ada_SOURCE_DIR}/ada.cpp"
+        ada-url_ada
+        PRIVATE "${ada-url_ada_SOURCE_DIR}/ada.cpp"
         PUBLIC FILE_SET
                HEADERS
                BASE_DIRS
-               "${ada_SOURCE_DIR}"
+               "${ada-url_ada_SOURCE_DIR}"
         )
 
     target_link_libraries(
-        ada
+        ada-url_ada
         PRIVATE common::compile_features
                 common::compile_definitions
                 common::compile_options_no_warnings
