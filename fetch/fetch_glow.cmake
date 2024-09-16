@@ -19,11 +19,11 @@ function(fetch_glow)
     include(FetchContent)
 
     FetchContent_Declare(
-        glow
+        mthierman_glow
         GIT_REPOSITORY "https://github.com/mthierman/Glow.git"
         GIT_TAG ${FETCH_VERSION}
         GIT_SHALLOW ON
         )
 
-    FetchContent_MakeAvailable(glow)
+    FetchContent_MakeAvailable(mthierman_glow)
 endfunction()
