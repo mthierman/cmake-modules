@@ -19,10 +19,10 @@ function(fetch_clap_wrapper)
     include(FetchContent)
 
     FetchContent_Declare(
-        clap-wrapper
+        free-audio_clap-wrapper
         URL "https://github.com/free-audio/clap-wrapper/archive/refs/heads/${FETCH_VERSION}.zip"
         DOWNLOAD_NO_PROGRESS TRUE
         )
 
-    FetchContent_MakeAvailable(clap-wrapper)
+    FetchContent_MakeAvailable(free-audio_clap-wrapper)
 endfunction()
