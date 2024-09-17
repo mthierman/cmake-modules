@@ -22,3 +22,25 @@ include(fetch/fetch_wil.cmake)
 include(utility/download_vc_redist.cmake)
 include(utility/fetch.cmake)
 include(utility/make_release_info.cmake)
+
+if(PROJECT_IS_TOP_LEVEL)
+    fetch_ada(
+        VERSION
+        "v2.9.2"
+        )
+
+    fetch_choc(
+        VERSION
+        "main"
+        )
+
+    add_executable(${PROJECT_NAME})
+
+    target_sources(${PROJECT_NAME} PRIVATE "src/main.cxx")
+
+    target_link_libraries(
+        ${PROJECT_NAME}
+        PRIVATE ada-url::ada
+                tracktion::choc
+        )
+endif()

@@ -45,10 +45,25 @@ function(fetch_ada)
                "${ada-url_ada_SOURCE_DIR}"
         )
 
-    target_link_libraries(
+    target_compile_features(
         ada-url_ada
-        PRIVATE common::compile_features
-                common::compile_definitions
-                common::compile_options_no_warnings
+        PRIVATE c_std_17
+                cxx_std_23
+        )
+
+    target_compile_options(
+        ada-url_ada
+        PRIVATE $<$<CXX_COMPILER_ID:MSVC>:
+                /MP
+                /nologo
+                /utf-8
+                /bigobj
+                /diagnostics:caret
+                /Zc:__cplusplus
+                >
+                $<$<AND:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_FRONTEND_VARIANT:MSVC>>:
+                >
+                $<$<AND:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_FRONTEND_VARIANT:GNU>>:
+                >
         )
 endfunction()
