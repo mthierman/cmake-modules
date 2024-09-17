@@ -27,91 +27,91 @@ if(PROJECT_IS_TOP_LEVEL)
     # https://github.com/ada-url/ada
     fetch_ada(
         VERSION
-        "v2.9.2"
+        v2.9.2
         )
 
     # https://github.com/Tracktion/choc
     fetch_choc(
         VERSION
-        "main"
+        main
         )
 
     # https://github.com/free-audio/clap
     fetch_clap(
         VERSION
-        "1.2.1"
+        1.2.1
         )
 
     # https://github.com/free-audio/clap-helpers
     fetch_clap_helpers(
         VERSION
-        "main"
+        main
         )
 
     # https://github.com/free-audio/clap-wrapper
     fetch_clap_wrapper(
         VERSION
-        "main"
+        main
         )
 
     # https://www.nuget.org/packages/Microsoft.Windows.CppWinRT/
     fetch_cppwinrt(
         VERSION
-        "2.0.240405.15"
+        2.0.240405.15
         )
 
     # https://www.nuget.org/packages/Microsoft.Windows.ImplementationLibrary
     fetch_wil(
         VERSION
-        "1.0.240803.1"
+        1.0.240803.1
         )
 
     # https://www.nuget.org/packages/Microsoft.Web.WebView2/
     fetch_webview2(
         VERSION
-        "1.0.2739.15"
+        1.0.2739.15
         )
 
     # https://github.com/mthierman/Glow
     fetch_glow(
         VERSION
-        "main"
+        main
         )
 
     # https://github.com/mthierman/Hand
     fetch_hand(
         VERSION
-        "main"
+        main
         )
 
     # https://github.com/nlohmann/json
     fetch_json(
         VERSION
-        "v3.11.3"
+        v3.11.3
         )
 
     # https://github.com/juce-framework/JUCE
     fetch_juce(
         VERSION
-        "8.0.1"
+        8.0.1
         )
 
     # https://www.sqlite.org/
     fetch_sqlite(
         VERSION
-        "3460100"
+        3460100
         )
 
     # https://github.com/thestk/rtaudio
     fetch_rtaudio(
         VERSION
-        "6.0.1"
+        6.0.1
         )
 
     # https://github.com/thestk/rtmidi
     fetch_rtmidi(
         VERSION
-        "6.0.0"
+        6.0.0
         )
 
     add_executable(${PROJECT_NAME})
