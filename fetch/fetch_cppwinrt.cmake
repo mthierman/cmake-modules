@@ -40,7 +40,9 @@ function(fetch_cppwinrt)
         )
 
     execute_process(
-        COMMAND cppwinrt -input sdk -output "${microsoft_cppwinrt_SOURCE_DIR}/build/native/include"
+        COMMAND
+            cppwinrt -input sdk -output
+            "${CMAKE_BINARY_DIR}/include/microsoft/Microsoft.Windows.CppWinRT"
         WORKING_DIRECTORY "${microsoft_cppwinrt_SOURCE_DIR}/bin"
         )
 
@@ -49,6 +51,6 @@ function(fetch_cppwinrt)
         PUBLIC FILE_SET
                HEADERS
                BASE_DIRS
-               "${microsoft_cppwinrt_SOURCE_DIR}/build/native/include"
+               "${CMAKE_BINARY_DIR}/include/microsoft/Microsoft.Windows.CppWinRT"
         )
 endfunction()
