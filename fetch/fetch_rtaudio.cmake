@@ -49,10 +49,21 @@ function(fetch_rtaudio)
                "${CMAKE_BINARY_DIR}/include/thestk/rtaudio"
         )
 
-    target_link_libraries(
+    target_compile_features(
         thestk_rtaudio
-        PRIVATE common::compile_features
-                common::compile_definitions
-                common::compile_options_no_warnings
+        PRIVATE c_std_17
+                cxx_std_23
+        )
+
+    target_compile_options(
+        thestk_rtaudio
+        PRIVATE $<$<CXX_COMPILER_ID:MSVC>:
+                /MP
+                /nologo
+                /utf-8
+                /bigobj
+                /diagnostics:caret
+                /Zc:__cplusplus
+                >
         )
 endfunction()
