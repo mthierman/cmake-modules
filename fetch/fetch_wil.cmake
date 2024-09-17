@@ -39,5 +39,11 @@ function(fetch_wil)
         microsoft_wil
         )
 
-    target_include_directories(microsoft_wil INTERFACE "${microsoft_wil_SOURCE_DIR}/include")
+    target_sources(
+        microsoft_wil
+        PUBLIC FILE_SET
+               HEADERS
+               BASE_DIRS
+               "${microsoft_wil_SOURCE_DIR}/include"
+        )
 endfunction()
