@@ -19,25 +19,25 @@ function(fetch_wil)
     include(FetchContent)
 
     FetchContent_Declare(
-        wil
+        microsoft_wil
         URL "https://www.nuget.org/api/v2/package/Microsoft.Windows.ImplementationLibrary/${FETCH_VERSION}"
         DOWNLOAD_NO_PROGRESS TRUE
         SOURCE_SUBDIR
         "NULL"
         )
 
-    FetchContent_MakeAvailable(wil)
+    FetchContent_MakeAvailable(microsoft_wil)
 
     add_library(
-        wil
+        microsoft_wil
         INTERFACE
         )
 
     add_library(
         microsoft::wil
         ALIAS
-        wil
+        microsoft_wil
         )
 
-    target_include_directories(wil INTERFACE "${wil_SOURCE_DIR}/include")
+    target_include_directories(microsoft_wil INTERFACE "${microsoft_wil_SOURCE_DIR}/include")
 endfunction()
