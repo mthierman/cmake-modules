@@ -43,4 +43,24 @@ if(PROJECT_IS_TOP_LEVEL)
         PRIVATE ada-url::ada
                 tracktion::choc
         )
+
+    target_compile_features(
+        ${PROJECT_NAME}
+        PRIVATE c_std_17
+                cxx_std_23
+        )
+
+    target_compile_options(
+        ${PROJECT_NAME}
+        PRIVATE $<$<CXX_COMPILER_ID:MSVC>:
+                /W4
+                /WX
+                /MP
+                /nologo
+                /utf-8
+                /bigobj
+                /diagnostics:caret
+                /Zc:__cplusplus
+                >
+        )
 endif()

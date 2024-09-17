@@ -61,9 +61,5 @@ function(fetch_ada)
                 /diagnostics:caret
                 /Zc:__cplusplus
                 >
-                $<$<AND:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_FRONTEND_VARIANT:MSVC>>:
-                >
-                $<$<AND:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_FRONTEND_VARIANT:GNU>>:
-                >
         )
 endfunction()
