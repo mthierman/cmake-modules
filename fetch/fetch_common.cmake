@@ -29,8 +29,8 @@ function(fetch_common)
 
     target_compile_definitions(
         common_compile_definitions
-        INTERFACE NOMINMAX
-                  WIN32_LEAN_AND_MEAN
+        INTERFACE WIN32_LEAN_AND_MEAN
+                  NOMINMAX
                   GDIPVER=0x0110
         )
 
