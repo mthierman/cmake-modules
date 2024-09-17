@@ -121,8 +121,19 @@ if(PROJECT_IS_TOP_LEVEL)
     target_link_libraries(
         ${PROJECT_NAME}
         PRIVATE ada-url::ada
-                sqlite::sqlite
                 tracktion::choc
+                free-audio::clap
+                free-audio::clap-helpers
+                free-audio::clap-wrapper
+                microsoft::cppwinrt
+                microsoft::wil
+                microsoft::webview2
+                glow::glow
+                # mthierman::hand
+                nlohmann::json
+                sqlite::sqlite
+                thestk::rtaudio
+                thestk::rtmidi
         )
 
     target_compile_features(
