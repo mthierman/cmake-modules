@@ -39,10 +39,13 @@ function(fetch_webview2)
         microsoft_webview2
         )
 
-    target_include_directories(
+    target_sources(
         microsoft_webview2
-        INTERFACE "${microsoft_webview2_SOURCE_DIR}/build/native/include"
-                  "${microsoft_webview2_SOURCE_DIR}/build/native/include-winrt"
+        PUBLIC FILE_SET
+               HEADERS
+               BASE_DIRS
+               "${microsoft_webview2_SOURCE_DIR}/build/native/include"
+               "${microsoft_webview2_SOURCE_DIR}/build/native/include-winrt"
         )
 
     target_link_directories(
@@ -58,8 +61,9 @@ function(fetch_webview2)
     if(cppwinrt_SOURCE_DIR)
         execute_process(
             COMMAND
-                cppwinrt -input "${microsoft_webview2_SOURCE_DIR}/lib/Microsoft.Web.WebView2.Core.winmd" sdk
-                -output "${microsoft_cppwinrt_SOURCE_DIR}/build/native/include"
+                cppwinrt -input
+                "${microsoft_webview2_SOURCE_DIR}/lib/Microsoft.Web.WebView2.Core.winmd" sdk -output
+                "${CMAKE_BINARY_DIR}/include/microsoft/Microsoft.Windows.CppWinRT"
             WORKING_DIRECTORY "${microsoft_cppwinrt_SOURCE_DIR}/bin"
             )
     endif()
