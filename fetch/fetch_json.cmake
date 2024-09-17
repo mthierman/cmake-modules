@@ -19,33 +19,33 @@ function(fetch_json)
     include(FetchContent)
 
     FetchContent_Declare(
-        json
+        nlohmann_json
         URL "https://github.com/nlohmann/json/releases/download/v${FETCH_VERSION}/include.zip"
         DOWNLOAD_NO_PROGRESS TRUE
         SOURCE_SUBDIR
         "NULL"
         )
 
-    FetchContent_MakeAvailable(json)
+    FetchContent_MakeAvailable(nlohmann_json)
 
     add_library(
-        json
+        nlohmann_json
         INTERFACE
         )
 
     add_library(
         nlohmann::json
         ALIAS
-        json
+        nlohmann_json
         )
 
     target_sources(
-        json
+        nlohmann_json
         PUBLIC FILE_SET
                HEADERS
                BASE_DIRS
-               "${json_SOURCE_DIR}/single_include"
+               "${nlohmann_json_SOURCE_DIR}/single_include"
         )
 
-    target_compile_definitions(json INTERFACE NLOHMANN_JSON_NAMESPACE_NO_VERSION=1)
+    target_compile_definitions(nlohmann_json INTERFACE NLOHMANN_JSON_NAMESPACE_NO_VERSION=1)
 endfunction()
