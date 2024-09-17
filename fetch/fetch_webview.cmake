@@ -19,48 +19,48 @@ function(fetch_webview2)
     include(FetchContent)
 
     FetchContent_Declare(
-        webview2
+        microsoft_webview2
         URL "https://www.nuget.org/api/v2/package/Microsoft.Web.WebView2/${FETCH_VERSION}"
         DOWNLOAD_NO_PROGRESS TRUE
         SOURCE_SUBDIR
         "NULL"
         )
 
-    FetchContent_MakeAvailable(webview2)
+    FetchContent_MakeAvailable(microsoft_webview2)
 
     add_library(
-        webview2
+        microsoft_webview2
         INTERFACE
         )
 
     add_library(
         microsoft::webview2
         ALIAS
-        webview2
+        microsoft_webview2
         )
 
     target_include_directories(
-        webview2
-        INTERFACE "${webview2_SOURCE_DIR}/build/native/include"
-                  "${webview2_SOURCE_DIR}/build/native/include-winrt"
+        microsoft_webview2
+        INTERFACE "${microsoft_webview2_SOURCE_DIR}/build/native/include"
+                  "${microsoft_webview2_SOURCE_DIR}/build/native/include-winrt"
         )
 
     target_link_directories(
-        webview2
+        microsoft_webview2
         INTERFACE
-        "${webview2_SOURCE_DIR}/build/native/x64"
+        "${microsoft_webview2_SOURCE_DIR}/build/native/x64"
         )
 
-    target_link_libraries(webview2 INTERFACE WebView2LoaderStatic.lib)
+    target_link_libraries(microsoft_webview2 INTERFACE WebView2LoaderStatic.lib)
 
-    FetchContent_GetProperties(cppwinrt SOURCE_DIR cppwinrt_SOURCE_DIR)
+    FetchContent_GetProperties(microsoft_cppwinrt SOURCE_DIR microsoft_cppwinrt_SOURCE_DIR)
 
     if(cppwinrt_SOURCE_DIR)
         execute_process(
             COMMAND
-                cppwinrt -input "${webview2_SOURCE_DIR}/lib/Microsoft.Web.WebView2.Core.winmd" sdk
-                -output "${cppwinrt_SOURCE_DIR}/build/native/include"
-            WORKING_DIRECTORY "${cppwinrt_SOURCE_DIR}/bin"
+                cppwinrt -input "${microsoft_webview2_SOURCE_DIR}/lib/Microsoft.Web.WebView2.Core.winmd" sdk
+                -output "${microsoft_cppwinrt_SOURCE_DIR}/build/native/include"
+            WORKING_DIRECTORY "${microsoft_cppwinrt_SOURCE_DIR}/bin"
             )
     endif()
 endfunction()
