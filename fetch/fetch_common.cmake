@@ -149,4 +149,42 @@ function(fetch_common)
         -Wl,/WX,/NOLOGO
         >
         )
+
+    add_library(
+        common_exe
+        INTERFACE
+        )
+
+    add_library(
+        common::exe
+        ALIAS
+        common_exe
+        )
+
+    target_link_libraries(
+        common_exe
+        INTERFACE common::compile_features
+                  common::compile_definitions
+                  common::compile_options
+                  common::link_options_exe
+        )
+
+    add_library(
+        common_lib
+        INTERFACE
+        )
+
+    add_library(
+        common::lib
+        ALIAS
+        common_lib
+        )
+
+    target_link_libraries(
+        common_lib
+        INTERFACE common::compile_features
+                  common::compile_definitions
+                  common::compile_options
+                  common::link_options_lib
+        )
 endfunction()
