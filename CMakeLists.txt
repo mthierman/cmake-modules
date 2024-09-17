@@ -129,7 +129,7 @@ if(PROJECT_IS_TOP_LEVEL)
                 microsoft::wil
                 microsoft::webview2
                 glow::glow
-                # mthierman::hand
+                hand::hand
                 nlohmann::json
                 sqlite::sqlite
                 thestk::rtaudio
