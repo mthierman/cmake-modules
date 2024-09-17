@@ -44,7 +44,11 @@ function(fetch_cppwinrt)
         WORKING_DIRECTORY "${microsoft_cppwinrt_SOURCE_DIR}/bin"
         )
 
-    target_include_directories(
-        cppwinrt INTERFACE "${microsoft_cppwinrt_SOURCE_DIR}/build/native/include"
+    target_sources(
+        microsoft_cppwinrt
+        PUBLIC FILE_SET
+               HEADERS
+               BASE_DIRS
+               "${microsoft_cppwinrt_SOURCE_DIR}/build/native/include"
         )
 endfunction()
