@@ -19,34 +19,34 @@ function(fetch_sqlite)
     include(FetchContent)
 
     FetchContent_Declare(
-        sqlite
+        sqlite_sqlite
         URL "https://www.sqlite.org/2024/sqlite-amalgamation-${FETCH_VERSION}.zip"
         DOWNLOAD_NO_PROGRESS TRUE
         SOURCE_SUBDIR
         "NULL"
         )
 
-    FetchContent_MakeAvailable(sqlite)
+    FetchContent_MakeAvailable(sqlite_sqlite)
 
-    add_library(sqlite)
+    add_library(sqlite_sqlite)
 
     add_library(
         sqlite::sqlite
         ALIAS
-        sqlite
+        sqlite_sqlite
         )
 
     target_sources(
-        sqlite
-        PRIVATE "${sqlite_SOURCE_DIR}/sqlite3.c"
+        sqlite_sqlite
+        PRIVATE "${sqlite_sqlite_SOURCE_DIR}/sqlite3.c"
         PUBLIC FILE_SET
                HEADERS
                BASE_DIRS
-               "${sqlite_SOURCE_DIR}"
+               "${sqlite_sqlite_SOURCE_DIR}"
         )
 
     target_link_libraries(
-        sqlite
+        sqlite_sqlite
         PRIVATE common::compile_features
                 common::compile_definitions
                 common::compile_options_no_warnings
