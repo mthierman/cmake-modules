@@ -29,7 +29,8 @@ function(fetch_common)
 
     target_compile_definitions(
         common_compile_definitions
-        INTERFACE WIN32_LEAN_AND_MEAN
+        INTERFACE UNICODE
+                  WIN32_LEAN_AND_MEAN
                   NOMINMAX
                   GDIPVER=0x0110
         )
@@ -51,7 +52,6 @@ function(fetch_common)
                   /W4
                   /WX
                   /MP
-                  /nologo
                   /utf-8
                   /bigobj
                   /diagnostics:caret
@@ -82,7 +82,6 @@ function(fetch_common)
         common_compile_options_no_warnings
         INTERFACE $<$<CXX_COMPILER_ID:MSVC>:
                   /MP
-                  /nologo
                   /utf-8
                   /bigobj
                   /diagnostics:caret
@@ -111,15 +110,13 @@ function(fetch_common)
         $<$<CXX_COMPILER_ID:MSVC>:
         /entry:mainCRTStartup
         /WX
-        /NOLOGO
         >
         $<$<AND:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_FRONTEND_VARIANT:MSVC>>:
         /entry:mainCRTStartup
         /WX
-        /NOLOGO
         >
         $<$<AND:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_FRONTEND_VARIANT:GNU>>:
-        -Wl,/entry:mainCRTStartup,/WX,/NOLOGO
+        -Wl,/entry:mainCRTStartup,/WX
         >
         )
 
@@ -139,14 +136,12 @@ function(fetch_common)
         INTERFACE
         $<$<CXX_COMPILER_ID:MSVC>:
         /WX
-        /NOLOGO
         >
         $<$<AND:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_FRONTEND_VARIANT:MSVC>>:
         /WX
-        /NOLOGO
         >
         $<$<AND:$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_FRONTEND_VARIANT:GNU>>:
-        -Wl,/WX,/NOLOGO
+        -Wl,/WX
         >
         )
 
