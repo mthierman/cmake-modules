@@ -55,7 +55,6 @@ function(fetch_ada)
         ada-url_ada
         PRIVATE $<$<CXX_COMPILER_ID:MSVC>:
                 /MP
-                /nologo
                 /utf-8
                 /bigobj
                 /diagnostics:caret
