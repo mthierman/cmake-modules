@@ -21,6 +21,7 @@ include(fetch/fetch_wil.cmake)
 
 include(utility/download_vc_redist.cmake)
 include(utility/fetch.cmake)
+include(utility/find_innosetup.cmake)
 include(utility/make_release_info.cmake)
 
 if(PROJECT_IS_TOP_LEVEL)
