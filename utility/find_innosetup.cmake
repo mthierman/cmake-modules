@@ -1,10 +1,10 @@
 function(find_innosetup)
     find_program(
-        INNOSETUP_COMPILER
+        INNOSETUP_COMPILER_EXE
         iscc
         )
-    if(INNOSETUP_COMPILER)
-        message(STATUS "Found InnoSetup: ${INNOSETUP_COMPILER}")
+    if(INNOSETUP_COMPILER_EXE)
+        message(STATUS "Using Inno Setup from ${INNOSETUP_COMPILER_EXE}")
     else()
         file(
             DOWNLOAD
