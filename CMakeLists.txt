@@ -1,5 +1,5 @@
-cmake_minimum_required(VERSION 3.30)
-project(cmake-modules VERSION 0.0.0)
+cmake_minimum_required(VERSION 4.0)
+project(cmake-modules)
 
 list(APPEND CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/modules")
 list(REMOVE_DUPLICATES CMAKE_MODULE_PATH)
