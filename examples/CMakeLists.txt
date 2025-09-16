@@ -1,3 +1,4 @@
+find_package(Config)
 add_executable(exe)
 
 target_sources(exe PRIVATE "exe/main.cpp")

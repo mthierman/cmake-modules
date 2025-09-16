@@ -1,19 +1,19 @@
 include(FetchContent)
 
-add_library(pane_config INTERFACE)
+add_library(config INTERFACE)
 
-add_library(pane::config ALIAS pane_config)
+add_library(config::config ALIAS config)
 
-target_compile_features(pane_config INTERFACE c_std_17 cxx_std_23)
+target_compile_features(config INTERFACE c_std_17 cxx_std_23)
 
 target_compile_definitions(
-    pane_config
-    INTERFACE UNICODE WIN32_LEAN_AND_MEAN NOMINMAX GDIPVER=0x0110
+    config
+    INTERFACE UNICODE _UNICODE WIN32_LEAN_AND_MEAN NOMINMAX GDIPVER=0x0110
 )
 
 # https://learn.microsoft.com/en-us/cpp/build/reference/compiler-options
 target_compile_options(
-    pane_config
+    config
     INTERFACE
         $<$<CXX_COMPILER_ID:MSVC>:
         /W4
@@ -38,7 +38,7 @@ target_compile_options(
 
 # https://learn.microsoft.com/en-us/cpp/build/reference/linker-options
 target_link_options(
-    pane_config
+    config
     INTERFACE
         $<$<CXX_COMPILER_ID:MSVC>:
         /WX
